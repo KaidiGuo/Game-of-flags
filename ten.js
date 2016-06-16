@@ -4,7 +4,8 @@ var cca3codes = [];
 var countrynames = [];
 var countrynamesall = [];
 var europeancountries = [];
-var countriesonmap = ["ad", "al", "am", "at", "az", "ba", "be", "bg", "by", "ca", "ch", "cs", "cy", "cz", "de", "dk", "dz", "ee", "es", "fi", "fr", "gb", "ge", "gl", "gr", "hr", "hu", "ie", "il", "iq", "ir", "is", "it", "jo", "kz", "lb", "li", "lt", "lu", "lv", "ma", "me", "rs", "mc", "md", "mk", "mt", "nl", "no", "pl", "pt", "ro", "sa", "se", "si", "sk", "sm", "sy", "tm", "tn", "tr", "ua", "ru-main", "ru-kaliningrad"];
+// var countriesonmap = ["ad", "al", "am", "at", "az", "ba", "be", "bg", "by", "ch", "cs", "cy", "cz", "de", "dk", "dz", "ee", "es", "fi", "fr", "gb", "ge", "gl", "gr", "hr", "hu", "ie", "il", "iq", "ir", "is", "it", "jo", "kz", "lb", "li", "lt", "lu", "lv", "ma", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "sa", "se", "si", "sk", "sm", "sy", "tm", "tn", "tr", "ua", "ru-main", "ru-kaliningrad"];
+var countriesonmap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk", "sm", "tr", "ua", "ru-main"];
 
 //First, this loads the countries. And the country buttons
 function loadcountries() {
@@ -12,13 +13,16 @@ function loadcountries() {
 
         for (var i = 0; i < data.length; i++) {
             //Selecting only European Countries.
-            if (data[i].region === "Europe") {
+
+
+            if (contains(countriesonmap, data[i].cca2.toLowerCase()) === true) {
                 countrynames.push(data[i].name.common);
                 countrynamesall.push(data[i].name.common);
                 cca3codes.push(data[i].cca3);
                 cca2codes.push(data[i].cca2);
             }
         }
+        console.log(countrynames);
         //creating buttons of countrynames. These are now divs.
         for (var i = 0; i < countrynames.length; i++) {
             var btn = document.createElement("div");
@@ -73,7 +77,7 @@ function randomcountry(ARRAY) {
 //var DisplayCountry = countrynames[randomcountrynumber]; //The flag which is displayed. This is a randomcountry number from the list.
 var globchosenrandomcountrynumber = " ";
 var DisplayCountrycca3 = " ";
-var DisplayCountrycca2 = "gb";
+var DisplayCountrycca2 = " ";
 var DisplayCountry = " ";
 var countryChosen // The flag which will be displayed.
     //The Country which is chosen. Deafault value is answer here.
@@ -94,12 +98,26 @@ var currentchoicethree= " ";
 
 
 function choices() {
+// Correct Answer
+var randomindexnumber = Math.floor(Math.random()*42)+0;
+var
+
+
+
+
+
+
+
+
+
+
+  console.log("countrynameslength="+countrynames.length);
     var randomcountrynumber = Math.floor(Math.random() * countrynames.length);
     globchosenrandomcountrynumber = randomcountrynumber;
     var DisplayCountry2 = countrynames[randomcountrynumber];
-    var DisplayCountry2indexnumber = countrynames.indexOf(DisplayCountry2);
-    var DisplayCountrycca32 = cca3codes[DisplayCountry2indexnumber];
-    var DisplayCountrycca22 = cca2codes[DisplayCountry2indexnumber];
+    // var DisplayCountry2indexnumber = countrynames.indexOf(DisplayCountry2);
+    var DisplayCountrycca32 = cca3codes[randomcountrynumber];
+    var DisplayCountrycca22 = cca2codes[randomcountrynumber];
     console.log(DisplayCountry2);
     console.log(DisplayCountrycca22);
 
@@ -112,13 +130,14 @@ function choices() {
         return false;
     };
     //Makes sure that the country is on the map.
-    if (contains(countriesonmap, DisplayCountrycca22.toLowerCase()) === false) {
-        console.log("NOT ON MAP");
-        choices();
-    } else {
-
-        console.log("On map")
-    };
+    // if (contains(countriesonmap, DisplayCountrycca22.toLowerCase()) === false) {
+    //     console.log("NOT ON MAP");
+    //     choices();
+    // }
+    // else {
+    //
+    //     console.log("On map")
+    // };
 //Console Log
     console.log(DisplayCountry2);
     console.log(DisplayCountrycca32);
@@ -148,6 +167,7 @@ function choices() {
 
 
   function randomchoices() {
+
     var choiceone = randomcountry(countrynamesall);
     var choicetwo = randomcountry(countrynamesall);
       var choicethree = randomcountry(countrynamesall);
@@ -233,7 +253,6 @@ function colorcountry(stylehere) {
 
 function decision() {
     var buttons = document.getElementsByClassName("button");
-    console.log(buttons);
     var buttonsCount = buttons.length;
 
      function nobuttons(){ for (var i = 0; i <= buttonsCount; i += 1){
@@ -274,6 +293,10 @@ function decision() {
               newelementdiv.className="finishednameCorrect";
               newelementdiv.innerHTML=DisplayCountry;
               document.getElementById("FinishedCountries").appendChild(newelementdiv);
+              colorcountry("fill:#68C398; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
+              countrynamesall.push(DisplayCountry);
+              cca2codes.push(DisplayCountrycca2);
+              cca3codes.push(DisplayCountrycca3);
               endofturn();
             }else {
               // alert("<No<");
@@ -282,6 +305,10 @@ function decision() {
               newelementdiv.className="finishednameWrong";
               newelementdiv.innerHTML=DisplayCountry;
               document.getElementById("FinishedCountries").appendChild(newelementdiv);
+              colorcountry("fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
+              countrynamesall.push(DisplayCountry);
+              cca2codes.push(DisplayCountrycca2);
+              cca3codes.push(DisplayCountrycca3);
               endofturn();
             }
 //             if (document.getElementById("CountrySelectBox").innerHTML == document.getElementById("CountryBox").innerHTML) {
@@ -330,6 +357,7 @@ function changehtml() {
 //At the end of each turn.
 function endofturn() {
     endofgame();
+    console.log("NUMBER OF COUNTRIES LEFT " + countrynames.length)
     randomcountrynumber = Math.floor(Math.random() * countrynames.length);
     Multiplechoice = [];
     turnnumber = turnnumber + 1;
@@ -358,9 +386,9 @@ for (var i = 0; i <= countriesonmap.length; i += 1) {
 
 //At the end of the game. What happens?
 function endofgame() {
-    if (turnnumber > 26) {
+    if (turnnumber > 100) {
         alert("end of game! You scored " + score + " out of " + turnnumber);
-        resetallcolours();
+        // resetallcolours();
         turnnumber = 0;
         score = 0;
         changehtml();

@@ -75,6 +75,7 @@ body{
 
 
 .map{
+  /*background-color: yellow;*/
   float: right;
   /*display: inline-block;*/
   position: relative;
@@ -89,10 +90,18 @@ body{
   /*border: 1px solid red;*/
 }
 
+.map svg{
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  float: right;
+  width: 90%;
+}
+
 .under{
   float: left;
   width: 96%;
-  height: 19%;
+  height: 16%;
   padding-top: 1%;
   padding-bottom: 0.5%;
 
@@ -133,6 +142,8 @@ body{
   display: inline-block;
   /*border: 1px solid green;*/
   margin: 0.5%;
+  padding-left: 3px;
+  padding-right: 3px;
   color: white;
   background-color: rgb(255, 0, 0);
 }
