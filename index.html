@@ -18,35 +18,29 @@
       <div class="logo">
         <img src="pic/logo1.png" alt="" />
       </div>
-      <div class="flag">
-        <img src="pic/flag.png" alt="" />
+      <div class="flag" >
+        <img src="pic/flag.png" alt="" id="Flag_Image" />
       </div>
-      <div class="buttons">
-        <div class="button A">
-        Germany
-        </div>
-        <div class="button B">
-          Germany
+      <div class="buttons" id="buttonsdiv">
 
-        </div>
-        <div class="button C">
-          Germany
-        </div>
-        <div class="button D">
-          GermanyGermany
-        </div>
-        <div class="button start">
+
+      </div>
+      <div class="restartbuttons">
+        <div class="button start" onclick="choices()">
           Restart
         </div>
+
       </div>
+
+
     </div>
 
 
     <div class="map">
       <img src="pic/map1.jpg" alt="" />
       <div class=" box2">
-        <p>
-          16/26
+        <p id="ScoreBox">
+          0/26
         </p>
       </div>
     </div>
@@ -58,16 +52,8 @@
     <div class="statis">
       <div class="box">
       </div>
-      <div class="names">
-        <p>
-          Germany
-        </p>
-        <p>
-          Germany
-        </p>
-        <p>
-          Germany
-        </p>
+      <div class="names" id="FinishedCountries">
+        
 
       </div>
 
@@ -76,7 +62,7 @@
 
       </div>
       <div class="sunder">
-        <div class="sbutton sstart">
+        <div class="sbutton sstart" onclick="choices()">
           Start
         </div>
         <div class="sbutton next">
@@ -85,5 +71,11 @@
         </div>
       </div>
 
+        <script type="text/javascript" src = "d3.js">
+
+        </script>
+        <script type="text/javascript" src="ten.js">
+
+        </script>
   </body>
 </html>

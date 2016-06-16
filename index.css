@@ -8,6 +8,9 @@ body{
   width: 100%;
   height: 100%;
 }
+.sunder{
+  display: none;
+}
 .slogo{
   display: none;
 }
@@ -15,6 +18,7 @@ body{
   float: left;
   padding-top: 1%;;
   padding-right: 2%;
+  height: auto;
   /*border: 3px solid yellow;*/
 }
 .bar{
@@ -23,6 +27,7 @@ body{
   /*background-color: green;*/
   /*border: 1px solid black;*/
   width: 35%;
+  height: 60%;
 }
 .logo img{
   /*border: 1px solid black;*/
@@ -38,6 +43,7 @@ body{
 }
 .buttons{
   position: relative;
+  /*background-color: green;*/
   /*border: 1px solid white;*/
 }
 .button{
@@ -53,6 +59,9 @@ body{
   text-align:center;
   width: 70%;
   /*border:1px solid;*/
+}
+.restartbuttons{
+  /*border: 1px solid red;*/
 }
 .start{
   margin-top: 10%;
@@ -83,7 +92,7 @@ body{
 .under{
   float: left;
   width: 96%;
-  height: 18%;
+  height: 19%;
   padding-top: 1%;
   padding-bottom: 0.5%;
 
@@ -112,12 +121,20 @@ body{
   /*margin-top: 1%;*/
   /*background-color: gray;*/
 }
-.names p{
+.finishednameCorrect{
   color: white;
   font-size: 120%;
   display: inline-block;
   /*border: 1px solid green;*/
-  margin: 1%;
+  margin: 0.5%;
+}
+.finishednameWrong {
+  font-size: 120%;
+  display: inline-block;
+  /*border: 1px solid green;*/
+  margin: 0.5%;
+  color: white;
+  background-color: rgb(255, 0, 0);
 }
 
 .box{

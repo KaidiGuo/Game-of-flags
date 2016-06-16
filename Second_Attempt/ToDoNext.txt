@@ -1,0 +1,25 @@
+Change the button to a div and make it clickable.  DONE
+If incorrect try again: CORRECT! 
+Set the display to have 4 choices. DONE 
+Create functions. split the functions into multiple functions. 
+Every function has a variable. They have a class name or an id name. So you can reuse it to different screen size. 
+Make the function reusable: put in the class name. 
+
+When you click start: a function to set the four buttons 
+When you click on a button. What happens?
+2 choices: 
+ 
+
+restart(onclickevent=yes) 
+
+
+
+start( 
+
+BUT DO THIS AFTERWARDS! 
+only when you click next will it refresh. DO NOT MAKE IT AUTOMATIC. 
+next(); 
+
+
+
+
