@@ -208,7 +208,7 @@ var randomindexnumber = Math.floor(Math.random()*42)+0;
       console.log("choicetwo " + choicetwo);
       currentchoicethree= choicethree;
       console.log("choicethree " + choicethree);
-      if (currentchoiceone==currentchoicetwo|| currentchoicetwo==currentchoicethree|| currentchoiceone==currentchoicethree) {
+      if (currentchoiceone==currentchoicetwo|| currentchoicetwo==currentchoicethree|| currentchoiceone==currentchoicethree||DisplayCountry==currentchoiceone|| DisplayCountry==currentchoicetwo|| DisplayCountry==currentchoicethree) {
       console.log("Duplicate Choice")
       randomchoices();
       }
