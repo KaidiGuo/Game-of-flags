@@ -5,7 +5,7 @@ var countrynames = [];
 var countrynamesall = [];
 var europeancountries = [];
 // var countriesonmap = ["ad", "al", "am", "at", "az", "ba", "be", "bg", "by", "ch", "cs", "cy", "cz", "de", "dk", "dz", "ee", "es", "fi", "fr", "gb", "ge", "gl", "gr", "hr", "hu", "ie", "il", "iq", "ir", "is", "it", "jo", "kz", "lb", "li", "lt", "lu", "lv", "ma", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "sa", "se", "si", "sk", "sm", "sy", "tm", "tn", "tr", "ua", "ru-main", "ru-kaliningrad"];
-var countriesonmap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk", "sm", "tr", "ua", "ru-main"];
+var countriesonmap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk", "sm", "tr", "ua", "ru"];
 
 //First, this loads the countries. And the country buttons
 function loadcountries() {
