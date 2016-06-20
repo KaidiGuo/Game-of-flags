@@ -100,7 +100,6 @@ var currentchoicethree= " ";
 function choices() {
 // Correct Answer
 var randomindexnumber = Math.floor(Math.random()*42)+0;
-var
 
 
 
@@ -111,7 +110,8 @@ var
 
 
 
-  console.log("countrynameslength="+countrynames.length);
+
+  console.log("countrynameslength=" + countrynames.length);
     var randomcountrynumber = Math.floor(Math.random() * countrynames.length);
     globchosenrandomcountrynumber = randomcountrynumber;
     var DisplayCountry2 = countrynames[randomcountrynumber];
@@ -208,7 +208,7 @@ var
       console.log("choicetwo " + choicetwo);
       currentchoicethree= choicethree;
       console.log("choicethree " + choicethree);
-      if (currentchoiceone==currentchoicetwo|| currentchoicetwo==currentchoicethree|| currentchoiceone==currentchoicethree) {
+      if (currentchoiceone==currentchoicetwo|| currentchoicetwo==currentchoicethree|| currentchoiceone==currentchoicethree||DisplayCountry==currentchoiceone|| DisplayCountry==currentchoicetwo|| DisplayCountry==currentchoicethree) {
       console.log("Duplicate Choice")
       randomchoices();
       }
@@ -242,10 +242,18 @@ var
 };
 
 // List of Functions Chaning the colour of the country
+//Global Variables. The country codes and their original colours. 
+var countryfillglob = [];
+var countrystyleglob=[];
 function colorcountry(stylehere) {
     var countryfill = document.getElementById(DisplayCountrycca2.toLowerCase());
+    countryfillglob.push(DisplayCountrycca2.toLowerCase());
     // DisplayCountrycca2.toLowerCase();
     console.log(countryfill);
+    var originalstyle = countryfill.getAttribute("style");
+    console.log(originalstyle);
+    countrystyleglob.push(originalstyle);
+    //Need to push this original style and the Id to a separate array. 
     countryfill.setAttribute("style", stylehere);
 };
 
@@ -374,21 +382,22 @@ function startgame() {
 
 //Reset all countries colours
 function resetallcolours() {
-for (var i = 0; i <= countriesonmap.length; i += 1) {
-
-    var resetcountry = document.getElementById(countriesonmap[i]);
+for (var i = 0; i <= countryfillglob.length; i += 1) {
+console.log(countryfillglob)
+    var resetcountry = document.getElementById(countryfillglob[i]);
+    console.log(resetcountry);
     console.log("RESETTING");
      console.log(resetcountry);
     if (resetcountry!== null){
-    resetcountry.setAttribute("style", "stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:7.63942308;fill:#000000")};
+    resetcountry.setAttribute("style", countrystyleglob[i])};
 }};
 
 
 //At the end of the game. What happens?
 function endofgame() {
-    if (turnnumber > 100) {
+    if (turnnumber > 5) {
         alert("end of game! You scored " + score + " out of " + turnnumber);
-        // resetallcolours();
+        resetallcolours();
         turnnumber = 0;
         score = 0;
         changehtml();
