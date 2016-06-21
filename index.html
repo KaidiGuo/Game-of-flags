@@ -7,39 +7,24 @@
   </head>
   <body>
     <div class="above">
-
       <div class="slogo">
         <div class="logo">
           <img src="pic/logo1.png" alt="" />
         </div>
-
       </div>
-    <div class="bar">
-      <div class="logo">
-        <img src="pic/logo1.png" alt="" />
-      </div>
-      <div class="flag" >
-        <img src="" alt="" id="Flag_Image" />
-      </div>
-      <div class="buttons" id="buttonsdiv">
-
-
-      </div>
-      <div class="restartbuttons">
-        <div class="button start" onclick="choices()">
-          Restart
+      <div class="bar">
+        <div class="logo">
+          <img src="pic/logo1.png" alt="" />
         </div>
-
+        <div class="flag" >
+          <img src="" alt="" id="Flag_Image" />
+        </div>
+        <div class="buttons" id="buttonsdiv"></div>
+        <div class="restartbuttons">
+        <div class="button start" onclick="choices()">Restart</div>
+        </div>
       </div>
-
-
-    </div>
-
-
-    <div class="map">
-
-
-
+      <div class="map">
 
       <?xml version="1.0" encoding="utf-8"?>
       <!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -1753,47 +1738,86 @@
       	</g>
       </svg>
 
-
-
-
       <div class=" box2">
-        <p id="ScoreBox">
-          0/26
-        </p>
+        <p id="ScoreBox">0/26</p>
       </div>
-    </div>
-
+      </div>
 
     </div>
     <div class="under">
-
-    <div class="statis">
-      <div class="box">
+      <div class="statis">
+        <div class="box">
+        </div>
+        <div class="names" id="FinishedCountries">
+        </div>
       </div>
-      <div class="names" id="FinishedCountries">
-
-
-      </div>
-
     </div>
+    <div class="sunder">
+      <div class="sbutton sstart" onclick="choices()">Start</div>
+      <div class="sbutton next">Next</div>
+    </div>
+    <div id="moreinfo">Project was done by Chris Hogg, Kaidi Guo, and Taras Dubrava. More information
+      you can find <a id="myBtn">here</a></div>
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">×</span>
+          <h1>Project diary</h1>
+          <table id="author_information">
+            <tr>
+              <th><h2>Person</h2></th>
+              <th><h2>Responsibilities</h2></th>
+            </tr>
+            <tr>
+              <td class="author_img" width="30%"><img class="author" src="/creators/Chris.bmp" alt="Chris"></td>
+              <td rowspan="2" width="70%"><div class="author_work"><h3>
+                <ul>
+                  <li>a set with images of flags</li>
+                  <li>codding the main Java Script part</li>
+                </ul>
+              </h3></div></td>
+            </tr>
+            <tr>
+              <td><div class="author_name"><h3>Chris Hogg</h3></div></td>
+            </tr>
+            <tr>
+              <td class="author_img" width="30%"><img class="author" src="/creators/Kaidi.bmp" alt="Kaidi"></td>
+              <td rowspan="2" width="70%"><div class="author_work"><h3>
+                <ul>
+                  <li>a web-page design</li>
+                  <li>embedding Europe map on the web-page</li>
+                  <li>some part of JavaScript code</li>
+                </ul>
+              </h3></div></td>
+            </tr>
+            <tr>
+              <td><div class="author_name"><h3>Kaidi Guo</h3></div></td>
+            </tr>
+            <tr>
+              <td class="author_img" width="30%"><img class="author" src="/creators/Taras.bmp" alt="Taras"></td>
+              <td rowspan="2" width="70%"><div class="author_work"><h3>
+                <ul>
+                  <li>Europe svg map design</li>
+                  <li>a web-page content</li>
+                  <li>pop-up box with diary information</li>
+                </ul>
+              </h3></div></td>
+            </tr>
+            <tr>
+              <td><div class="author_name"><h3>Taras Dubrava</h3></div></td>
+            </tr>
+          </table>
+        <h2>Total time spent for the project - 40 hours</h2>
 
+
+        </div>
 
       </div>
-      <div class="sunder">
-        <div class="sbutton sstart" onclick="choices()">
-          Start
-        </div>
-        <div class="sbutton next">
-          Next
 
-        </div>
-      </div>
+        <script type="text/javascript" src = "d3.js"></script>
+        <script type="text/javascript" src="ten.js"></script>
 
-        <script type="text/javascript" src = "d3.js">
 
-        </script>
-        <script type="text/javascript" src="ten.js">
 
-        </script>
   </body>
 </html>

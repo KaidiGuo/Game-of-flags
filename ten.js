@@ -242,7 +242,7 @@ var randomindexnumber = Math.floor(Math.random()*42)+0;
 };
 
 // List of Functions Chaning the colour of the country
-//Global Variables. The country codes and their original colours. 
+//Global Variables. The country codes and their original colours.
 var countryfillglob = [];
 var countrystyleglob=[];
 function colorcountry(stylehere) {
@@ -253,7 +253,7 @@ function colorcountry(stylehere) {
     var originalstyle = countryfill.getAttribute("style");
     console.log(originalstyle);
     countrystyleglob.push(originalstyle);
-    //Need to push this original style and the Id to a separate array. 
+    //Need to push this original style and the Id to a separate array.
     countryfill.setAttribute("style", stylehere);
 };
 
@@ -404,6 +404,23 @@ function endofgame() {
 
     }
 };
+
+
+//Descibes JavaScript code for pop-up box
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 
 //Thes button are not really needed.
