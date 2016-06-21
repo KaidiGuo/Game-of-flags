@@ -12,8 +12,6 @@ function loadcountries() {
 
         for (var i = 0; i < data.length; i++) {
             //Selecting only European Countries.
-
-
             if (contains(countriesonmap, data[i].cca2.toLowerCase()) === true) {
                 countrynames.push(data[i].name.common);
                 countrynamesall.push(data[i].name.common);
@@ -71,35 +69,30 @@ function randomcountry(ARRAY) {
 
 
 
-// List of Variables ---------------------------------------------------
-//Random Country Number
-
-//var DisplayCountry = countrynames[randomcountrynumber]; //The flag which is displayed. This is a randomcountry number from the list.
-
-
-
+// List of Global Variables ---------------------------------------------------
 var globchosenrandomcountrynumber = " ";
 var DisplayCountrycca3 = " ";
 var DisplayCountrycca2 = " ";
 var DisplayCountry = " ";
 var countryChosen // The flag which will be displayed.
     //The Country which is chosen. Deafault value is answer here.
-var answeredCountry = "Answer Here";
+var answeredCountry = "";
 var score = 0; //Number of correct answers
 var turnnumber = -1; // The turn number of the round.
 //var rightwrong = correctfunc(DisplayCountry, answeredCountry) //Is the state right or wrong? This will return either "correct" or "incorrect".
 //var colorchange = colorcountryfunc(rightwrong);
 //The multiple choice categories. This array will be the number.
 var Multiplechoice = [];
+
 //Choices function. Randomly assigns the coutry and 2 other countries to choose from.
 var currentchoiceone = " ";
 var currentchoicetwo = " ";
 var currentchoicethree= " ";
-//Selects and displays the choices on offer.
 
 //To display the choices.
-
+//If the country has already been chosen. 
 var alreadychosen = [];
+
 function choices() {
 // Correct Answer    
 var answernumber = Math.ceil(Math.random()*countriesonmap.length-1);
@@ -149,29 +142,12 @@ fourrandomnumbers = arr;
     var DisplayCountrycca22 = cca2codes[answernumber];
 //    console.log(DisplayCountry2);
 //    console.log(DisplayCountrycca22);
-
-
-//Console Log
     console.log(DisplayCountry2);
     console.log(DisplayCountrycca32);
     console.log(DisplayCountrycca22);
-    //The problem is is when they are put back into the array, it changes the array order.
     DisplayCountry = DisplayCountry2;
     DisplayCountrycca3 = DisplayCountrycca32;
-    
-//    console.log("DisplayCountrycca125="+DisplayCountrycca3);
     DisplayCountrycca2 = DisplayCountrycca22;
-    //The function that will remove the country from the list.
-
-    function splicecountry(country) {
-        var displaycountryindex = countrynames.indexOf(country);
-        if (displaycountryindex > -1) {
-            countrynames.splice(displaycountryindex, 1);
-            cca3codes.splice(displaycountryindex, 1);
-            cca2codes.splice(displaycountryindex, 1);
-        }
-    };
-
     Multiplechoice.push(DisplayCountry);
 
     //Splice the display country from the countrynames array. I could create a forloop with the number of choices, but this could come later.
@@ -251,7 +227,7 @@ console.log("random choice started");
     changeflag();
     
     decision();
-    changehtml();////////////////////////////////////////////////////////////////////////////////////////////
+    changehtml();
 
 
 
@@ -288,13 +264,13 @@ function decision() {
     console.log(buttons);
     console.log("length of buttons is" + buttonsCount);
 
-     function nobuttons(){ for (var i = 0; i <= buttonsCount; i += 1){
+//     function nobuttons(){ for (var i = 0; i <= buttonsCount; i += 1){
+//
+//                if(buttons[i].style.display="block"){
+//                buttons[i].style.display="none"
+//            }}};
 
-                if(buttons[i].style.display="block"){
-                buttons[i].style.display="none"
-            }}};
-
-    
+    //THE CODE WORKS FOR buttons.length
     for (var i = 0; i < buttons.length +1; i += 1) {
 console.log("enterforloop");
 
@@ -318,7 +294,7 @@ console.log("enterforloop");
               // alert("Correct!");
               score = score + 1;
               console.log("SCORE IS " + score);
-//Or createhtml() could be here.
+
               document.getElementById("ScoreBox").innerHTML = score + "/" +countriesonmap.length;
               var newelementdiv = document.createElement("p");
               newelementdiv.id="Country"+turnnumber;
@@ -370,36 +346,23 @@ console.log("enterforloop");
 
 
 
-//changing all of the HTML elements. It is also set at the beginning.
+//changing all of the HTML elements. Essentialy now just changing the score. 
 function changehtml() {
-//    changeflag();
-//    document.getElementById("TurnNumber").innerHTML = turnnumber;
     document.getElementById("ScoreBox").innerHTML = score + "/" +countriesonmap.length;
-//    document.getElementById("CountryBox").innerHTML = DisplayCountry;
-//    document.getElementById("CountrySelectBox").innerHTML = answeredCountry;
 };
 
 
 //At the end of each turn.
 function endofturn() {
-    endofgame();
-    console.log("NUMBER OF COUNTRIES LEFT " + countrynames.length)
-    randomcountrynumber = Math.floor(Math.random() * countrynames.length);
-    Multiplechoice = [];
     turnnumber = turnnumber + 1;
+    if (turnnumber > 42){ endofgame()};
+    console.log("NUMBER OF COUNTRIES LEFT " + countrynames.length)
+    Multiplechoice = [];
     choices();
-    changehtml();
-//    document.getElementById("CountrySelectBox").innerHTML = "Choose a Country";
 };
 
-//Starting the game
-function startgame() {
-        loadbuttons();
-    changehtml();
-};
 
-//Reset all countries colours
-
+//Reset all countries colours Including Kalingrad. 
 function resetallcolours() {
     
 var kalingrad = document.getElementById("russiak");
@@ -416,12 +379,9 @@ for (var i = 0; i <= countryfillglob.length; i += 1) {
     resetcountry.setAttribute("style", countrystyleglob[i])};
 }};
 
-
+//Resets the Box at the bottom of the screen. 
 function resetansweredbox() {
-     console.log("RESETANWEREBOX");
-    
-    
-    
+     console.log("RESETANWEREBOX"); 
     var wrongcountries =      
  document.getElementsByClassName("finishednameWrong");
     
@@ -437,9 +397,9 @@ function resetansweredbox() {
 };
 
 
-//At the end of the game. What happens?
+//At the end of the game.What happens? 
 function endofgame() {
-    if (turnnumber > 42) {
+     {
         alert("end of game! You scored " + score + " out of " + turnnumber);
         resetansweredbox();
         alreadychosen = [];
@@ -452,17 +412,11 @@ function endofgame() {
     }
 };
 
-function startbutton(){
-    console.log("CLICKED ON START!")
-    score= 0 ;
-    document.getElementById("ScoreBox").innerHTML = "0" + "/" +countriesonmap.length;
-    choices();
-    
-};
-//This is the function which is clicked. 
-function resetbutton() {   
+
+//This is the start button which is clicked. 
+function startbutton() {   
       if(document.getElementById(DisplayCountry) !== null && document.getElementById(currentchoiceone) !== null && document.getElementById(currentchoicetwo) !== null && document.getElementById(currentchoicethree)!== null) {
- //Set to    
+ //If there are buttons, set them to no display.      
     document.getElementById(DisplayCountry).style.display = "none";
             document.getElementById(currentchoiceone).style.display = "none";
             document.getElementById(currentchoicetwo).style.display = "none";
@@ -474,17 +428,14 @@ function resetbutton() {
     turnnumber = 0;
         score = 0;
          choices();
-        changehtml();
-    
-    
 };
-
-function restartbutton() {
+//This is the STOP GAME button
+function stopgamebutton() {
     console.log("RESTART BUTTON");
     document.getElementById("ScoreBox").innerHTML = "0" + "/" +countriesonmap.length;
+    document.getElementById("Flag_Image").src = "";
       document.getElementById(DisplayCountry).style.display = "none";
             document.getElementById(currentchoiceone).style.display = "none";
             document.getElementById(currentchoicetwo).style.display = "none";
              document.getElementById(currentchoicethree).style.display = "none";
-    choices();
 };
