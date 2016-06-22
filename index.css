@@ -98,6 +98,11 @@ body{
   width: 70%;
   /*border:1px solid;*/
 }
+
+
+
+
+
 .button{
   background-color: rgb(64, 81, 132);
   font-size: 120%;
@@ -121,6 +126,7 @@ body{
   background-color: white;
   color: rgb(64, 81, 132);
 }
+
 #seemap{
   display: none;
 }
@@ -528,7 +534,9 @@ li {
       text-align: left;
     }
     #absolutebox{
+      /*border: 1px solid red;*/
       /*display: none;*/
+      text-align: center;
       position: absolute;
       padding-top: 15%;
       z-index: 300;
@@ -577,13 +585,13 @@ li {
 
     }
     .sbutton {
-      background-color: rgb(64, 81, 132);
+      background-color: rgb(255, 255, 255);
       font-size: 120%;
       margin-left: auto;
       margin-right: auto;
       margin-top: 5%;
       padding: 5px;
-      color: rgb(255, 255, 255);
+      color: rgb(64, 81, 132);
       text-decoration: none;
       text-align:center;
       width: 150px;
@@ -595,7 +603,7 @@ li {
       /*border: 1px solid red;*/
     }
     #author_information {
-        font-size:50%; 
+        font-size:50%;
       /*border: 1px solid red;*/
         width: 80%;
         margin-left: auto;
