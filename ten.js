@@ -415,13 +415,21 @@ function endofgame() {
 
 //This is the start button which is clicked.
 function startbutton() {
+
       if(document.getElementById(DisplayCountry) !== null && document.getElementById(currentchoiceone) !== null && document.getElementById(currentchoicetwo) !== null && document.getElementById(currentchoicethree)!== null) {
  //If there are buttons, set them to no display.
     document.getElementById(DisplayCountry).style.display = "none";
             document.getElementById(currentchoiceone).style.display = "none";
             document.getElementById(currentchoicetwo).style.display = "none";
-             document.getElementById(currentchoicethree).style.display = "none"; };
+             document.getElementById(currentchoicethree).style.display = "none";
+
+            };
     document.getElementById("ScoreBox").innerHTML = "0" + "/" +countriesonmap.length;
+    document.getElementById("rulebox").style.display = "none";
+    document.getElementById("absolutebox").style.display = "none";
+    document.getElementById("start1").innerHTML = "Restart";
+
+
     resetansweredbox();
         alreadychosen = [];
         resetallcolours();
@@ -439,3 +447,41 @@ function stopgamebutton() {
             document.getElementById(currentchoicetwo).style.display = "none";
              document.getElementById(currentchoicethree).style.display = "none";
 };
+
+
+//Descibes JavaScript code for pop-up box
+ var modal = document.getElementById('myModal');
+ var btn = document.getElementById("myBtn");
+ var span = document.getElementsByClassName("close")[0];
+ btn.onclick = function() {
+     modal.style.display = "block";
+ }
+ span.onclick = function() {
+     modal.style.display = "none";
+ }
+ window.onclick = function(event) {
+     if (event.target == modal) {
+         modal.style.display = "none";
+     }
+ }
+
+function showbar(){
+   document.getElementById("mybar").style.display = "block";
+    document.getElementById("Continue").style.display = "block";
+    document.getElementById("sstart").style.display = "none";
+
+}
+var Mapview = 1;
+ function see(){
+   if (Mapview==1) {
+     document.getElementById("mybar").style.display = "none";
+     Mapview=0;
+   }
+   else if (Mapview==0) {
+     document.getElementById("mybar").style.display = "block";
+     Mapview=1;
+
+
+   }
+
+ }
