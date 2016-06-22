@@ -68,6 +68,8 @@ function randomcountry(ARRAY) {
 };
 
 
+
+// List of Global Variables ---------------------------------------------------
 var globchosenrandomcountrynumber = " ";
 var DisplayCountrycca3 = " ";
 var DisplayCountrycca2 = " ";
@@ -88,7 +90,6 @@ var currentchoicetwo = " ";
 var currentchoicethree= " ";
 
 //To display the choices.
-
 //If the country has already been chosen.
 var alreadychosen = [];
 
@@ -112,7 +113,6 @@ var fourrandomnumbers = [];
 //Creating random answers
 function four_random_numbers(){
 
-
     var arr = []
 while(arr.length < 3){
   var randomnumber=Math.ceil(Math.random()*countriesonmap.length-1)
@@ -120,12 +120,10 @@ while(arr.length < 3){
       randomnumber=Math.ceil(Math.random()*countriesonmap.length-1)
   }
   var found=false;
-
   for(var i=0;i<arr.length;i++){
 	if(arr[i]==randomnumber){found=true; break}
   }
     if(!found)arr[arr.length]=randomnumber;
-
 }
 fourrandomnumbers = arr;
     console.log(fourrandomnumbers);
@@ -144,13 +142,11 @@ fourrandomnumbers = arr;
     var DisplayCountrycca22 = cca2codes[answernumber];
 //    console.log(DisplayCountry2);
 //    console.log(DisplayCountrycca22);
-
     console.log(DisplayCountry2);
     console.log(DisplayCountrycca32);
     console.log(DisplayCountrycca22);
     DisplayCountry = DisplayCountry2;
     DisplayCountrycca3 = DisplayCountrycca32;
-
     DisplayCountrycca2 = DisplayCountrycca22;
     Multiplechoice.push(DisplayCountry);
 
@@ -161,10 +157,8 @@ fourrandomnumbers = arr;
 
 
   function randomchoices() {
-
 console.log("random choice started");
     var choiceone = countrynames[fourrandomnumbers[0]];
-
 
     var choicetwo = countrynames[fourrandomnumbers[1]];
       var choicethree = countrynames[fourrandomnumbers[2]];
@@ -174,11 +168,9 @@ console.log("random choice started");
       var choiceonecca2 = cca2codes[choiceoneindexnumber];
 
 
-
       var choicetwoindexnumber = countrynames.indexOf(choicetwo);
       var choicetwocca3 = cca3codes[choicetwoindexnumber];
       var choicetwocca2 = cca2codes[choicetwoindexnumber];
-
 
       var choicethreeindexnumber = countrynames.indexOf(choicethree);
       var choicethreecca3 = cca3codes[choicethreeindexnumber];
@@ -207,7 +199,6 @@ console.log("random choice started");
 //      console.log("Duplicate Choice")
 //      randomchoices();
 //      }
-
     document.getElementById(DisplayCountry).style.display = "block";
     document.getElementById(currentchoiceone).style.display = "block";
     document.getElementById(currentchoicetwo).style.display = "block";
@@ -237,6 +228,8 @@ console.log("random choice started");
 
     decision();
     changehtml();
+
+
 
 };
 
@@ -271,13 +264,11 @@ function decision() {
     console.log(buttons);
     console.log("length of buttons is" + buttonsCount);
 
-
 //     function nobuttons(){ for (var i = 0; i <= buttonsCount; i += 1){
 //
 //                if(buttons[i].style.display="block"){
 //                buttons[i].style.display="none"
 //            }}};
-
 
     //THE CODE WORKS FOR buttons.length
     for (var i = 0; i < buttons.length +1; i += 1) {
@@ -310,6 +301,7 @@ console.log("enterforloop");
               newelementdiv.className="finishednameCorrect";
               newelementdiv.innerHTML=DisplayCountry;
 
+
               document.getElementById("FinishedCountries").appendChild(newelementdiv);
 
             if(DisplayCountry=="Russia"){
@@ -317,7 +309,6 @@ console.log("enterforloop");
             console.log(kalingradshape);
             kalingradshape.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
             };
-
 
               colorcountry("fill:#68C398; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
               countrynamesall.push(DisplayCountry);
@@ -332,11 +323,11 @@ console.log("enterforloop");
               newelementdiv.innerHTML=DisplayCountry;
               document.getElementById("FinishedCountries").appendChild(newelementdiv);
 
+
                 if(DisplayCountry=="Russia"){
              var kalingradshape =   document.getElementById("russiak");
             kalingradshape.setAttribute("style","fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
             };
-
 
 
                 colorcountry("fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
@@ -371,14 +362,12 @@ function endofturn() {
 };
 
 
-
 //Reset all countries colours Including Kalingrad.
 function resetallcolours() {
 
 var kalingrad = document.getElementById("russiak");
 
     kalingrad.setAttribute("style", "fill:#F6DD78; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
-
 
 for (var i = 0; i <= countryfillglob.length; i += 1) {
 //console.log(countryfillglob)
@@ -408,33 +397,20 @@ function resetansweredbox() {
 };
 
 
-
 //At the end of the game.What happens?
 function endofgame() {
      {
-
         alert("end of game! You scored " + score + " out of " + turnnumber);
         resetansweredbox();
         alreadychosen = [];
         resetallcolours();
         turnnumber = 0;
         score = 0;
-
 //         choices();
         changehtml();
 
-
     }
 };
-
-function resetbutton() {
-        resetansweredbox();
-        alreadychosen = [];
-        resetallcolours();
-        turnnumber = 0;
-        score = 0;
-         choices();
-        changehtml();
 
 
 //This is the start button which is clicked.
