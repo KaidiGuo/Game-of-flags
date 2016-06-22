@@ -248,7 +248,7 @@ em{
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 1000; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -293,7 +293,8 @@ h1 {
 
 #author_information {
     width: 60%;
-    margin-left: 20%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 5%;
     margin-bottom: 5%;
 
@@ -455,15 +456,7 @@ li {
       margin: 2%;
       width: 70%;
     }
-    .sbar{
-      display: none;
-      position: absolute;
-      z-index: 500;
-      height: 100%;
-      width: 100%;
-      background-color: rgb(145, 164, 195);
 
-    }
     .sunder{
       display: block;
       float: left;
@@ -491,6 +484,7 @@ li {
       margin-top: 4%;
       /*border: 1px solid red;*/
     }
+
 
 
 
@@ -572,15 +566,7 @@ li {
       margin: 2%;
       width: 70%;
     }
-    .sbar{
-      display: none;
-      position: absolute;
-      z-index: 500;
-      height: 100%;
-      width: 100%;
-      background-color: rgb(145, 164, 195);
 
-    }
     .sunder{
       display: block;
       float: left;
@@ -608,6 +594,21 @@ li {
       margin-top: 4%;
       /*border: 1px solid red;*/
     }
+    #author_information {
+        font-size:50%; 
+      /*border: 1px solid red;*/
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+
+        }
+    .author {
+        width: 100%;
+        margin: 5px;
+        align-items: center;
+        }
 
 
 
