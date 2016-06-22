@@ -273,11 +273,12 @@ em{
 }
 /* Modal Content */
 .modal-content {
+
     background-color: rgb(145, 164, 195);
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
     width: 80%;
+    height: 70%;
     }
 /* The Close Button */
 .close {
@@ -296,15 +297,32 @@ h1 {
     padding: 0%;
     margin: 0%;
     }
-
+.popContent{
+  float: left;
+  /*border: 1px solid yellow;*/
+}
 #author_information {
+    /*border: 1px solid green;*/
+    float: left;
+    /*position: relative;*/
+
     width: 60%;
-    margin-left: auto;
-    margin-right: auto;
+
     margin-top: 5%;
     margin-bottom: 5%;
 
     }
+    #map {
+      /*position: relative;
+
+      /*margin-top: -400px;*/
+      float: left;
+      margin-left: 30px;
+      width: 30%;
+      height: 400px;
+    }
+
+
 .author {
     width: 60%;
     margin: 5px;
@@ -369,6 +387,7 @@ li {
 .map{
   /*border: 1px solid red;*/
 }
+
 .bar p{
   font-size: 80%;
 
@@ -411,6 +430,11 @@ li {
     }
     #Continue{
       display: none;
+    }
+    #map {
+    display: none;
+
+
     }
     .logo{
       margin-top: 5%;
@@ -490,6 +514,24 @@ li {
       margin-top: 4%;
       /*border: 1px solid red;*/
     }
+    #author_information {
+        font-size:50%;
+      /*border: 1px solid red;*/
+        position: absolute;
+        float: none;
+        width: 80%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+
+        }
+    .author {
+        width: 80px;
+        margin: 5px;
+        align-items: center;
+        }
 
 
 
@@ -521,6 +563,11 @@ li {
     }
     #Continue{
       display: none;
+    }
+    #map {
+    display: none;
+
+
     }
     .logo{
       margin-top: 5%;
@@ -604,16 +651,20 @@ li {
     }
     #author_information {
         font-size:50%;
-      /*border: 1px solid red;*/
+        position: absolute;
+
+        float: none;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
         margin-top: 5%;
         margin-bottom: 5%;
+        height: auto;
 
         }
     .author {
-        width: 100%;
+        width: 80px;
+        /*height: 20%;*/
         margin: 5px;
         align-items: center;
         }

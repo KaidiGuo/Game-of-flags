@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="index.css" media="screen" title="no title" charset="utf-8">
     <title>Game of Flags</title>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+
 </head>
 
 <body>
@@ -1814,71 +1816,82 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">×</span>
+            <div class="popContent">
+              <table id="author_information">
 
-            <table id="author_information">
+                  <tr>
+                      <td class="author_img" width="30%"><img class="author" src="pic/Chris.jpg" alt="Chris"></td>
+                      <td rowspan="2" width="70%">
+                          <div class="author_work">
 
-                <tr>
-                    <td class="author_img" width="30%"><img class="author" src="pic/Chris.jpg" alt="Chris"></td>
-                    <td rowspan="2" width="70%">
-                        <div class="author_work">
+                              <ul>
+                                  <li class="Aname">Chris Hogg</li>
+                                  <li> > Database support</li>
+                                  <li> > Main JavaScript functions support</li>
+                                  <li> > More than 42 hours</li>
 
-                            <ul>
-                                <li class="Aname">Chris Hogg</li>
-                                <li> > Database support</li>
-                                <li> > Main JavaScript functions support</li>
-                                <li> > More than 42 hours</li>
+                              </ul>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
 
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="author_img" width="30%"><img class="author" src="pic/Kaidi.jpg" alt="Kaidi"></td>
+                      <td rowspan="2" width="70%">
+                          <div class="author_work">
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="author_img" width="30%"><img class="author" src="pic/Kaidi.jpg" alt="Kaidi"></td>
-                    <td rowspan="2" width="70%">
-                        <div class="author_work">
-
-                            <ul>
-                                <li class="Aname">Kaidi Guo</li>
-                                <li> > Web visual design and responsive design</li>
-                                <li> > JavaScript debug support  </li>
-                                <li> > More than 42 hours</li>
+                              <ul>
+                                  <li class="Aname">Kaidi Guo</li>
+                                  <li> > Web visual design and responsive design</li>
+                                  <li> > JavaScript debug support  </li>
+                                  <li> > More than 42 hours</li>
 
 
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                              </ul>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="author_img" width="30%"><img class="author" src="pic/Taras.jpg" alt="Taras"></td>
-                    <td rowspan="2" width="70%">
-                        <div class="author_work">
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="author_img" width="30%"><img class="author" src="pic/Taras.jpg" alt="Taras"></td>
+                      <td rowspan="2" width="70%">
+                          <div class="author_work">
 
-                            <ul>
-                                <li class="Aname">Taras Dubrava</li>
-                                <li> > Europe svg map design</li>
-                                <li> > Pop-up box support</li>
-                                <li> > More than 42 hours</li>
+                              <ul>
+                                  <li class="Aname">Taras Dubrava</li>
+                                  <li> > Europe svg map design</li>
+                                  <li> > Pop-up box support</li>
+                                  <li> > More than 42 hours</li>
 
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                              </ul>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
 
-                    </td>
-                </tr>
-            </table>
+                      </td>
+                  </tr>
+              </table>
+
+
+
+
+              <div id="map">
+              </div>
+
+
+            </div>
+
+
 
 
         </div>
@@ -1892,6 +1905,19 @@
     <script type="text/javascript" src="d3.js">
     </script>
     <script type="text/javascript" src="ten.js">
+    </script>
+    <script>
+    var mapOptions = {
+        center: { lat: 48.196188, lng: 16.369759 },
+        zoom: 17
+    };
+    var mapEl = document.getElementById('map');
+    var map = new google.maps.Map(mapEl, mapOptions);
+
+    var marker = new google.maps.Marker({
+        position: { lat: 48.196188, lng: 16.369759 },
+        map: map
+    });
     </script>
 </body>
 
