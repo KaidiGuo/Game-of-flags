@@ -400,7 +400,7 @@ function resetansweredbox() {
 //At the end of the game.What happens?
 function endofgame() {
      {
-        alert("end of game! You scored " + score + " out of " + turnnumber);
+        alert("End of game! You scored " + score + " out of " + turnnumber);
         resetansweredbox();
         alreadychosen = [];
         resetallcolours();
