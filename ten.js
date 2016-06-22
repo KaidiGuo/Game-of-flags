@@ -4,8 +4,7 @@ var cca3codes = [];
 var countrynames = [];
 var countrynamesall = [];
 var europeancountries = [];
-// var countriesonmap = ["ad", "al", "am", "at", "az", "ba", "be", "bg", "by", "ch", "cs", "cy", "cz", "de", "dk", "dz", "ee", "es", "fi", "fr", "gb", "ge", "gl", "gr", "hr", "hu", "ie", "il", "iq", "ir", "is", "it", "jo", "kz", "lb", "li", "lt", "lu", "lv", "ma", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "sa", "se", "si", "sk", "sm", "sy", "tm", "tn", "tr", "ua", "ru-main", "ru-kaliningrad"];
-var countriesonmap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk", "sm", "tr", "ua", "ru-main"];
+var countriesonmap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk","ru", "sm", "tr", "ua", ];
 
 //First, this loads the countries. And the country buttons
 function loadcountries() {
@@ -13,8 +12,6 @@ function loadcountries() {
 
         for (var i = 0; i < data.length; i++) {
             //Selecting only European Countries.
-
-
             if (contains(countriesonmap, data[i].cca2.toLowerCase()) === true) {
                 countrynames.push(data[i].name.common);
                 countrynamesall.push(data[i].name.common);
@@ -22,8 +19,7 @@ function loadcountries() {
                 cca2codes.push(data[i].cca2);
             }
         }
-        console.log(countrynames);
-        //creating buttons of countrynames. These are now divs.
+//creating buttons of countrynames. These are now divs.
         for (var i = 0; i < countrynames.length; i++) {
             var btn = document.createElement("div");
             btn.id = countrynames[i];
@@ -71,124 +67,115 @@ function randomcountry(ARRAY) {
     return randomcountry;
 };
 
-// List of Variables ---------------------------------------------------
-//Random Country Number
 
-//var DisplayCountry = countrynames[randomcountrynumber]; //The flag which is displayed. This is a randomcountry number from the list.
+
+// List of Global Variables ---------------------------------------------------
 var globchosenrandomcountrynumber = " ";
 var DisplayCountrycca3 = " ";
 var DisplayCountrycca2 = " ";
 var DisplayCountry = " ";
 var countryChosen // The flag which will be displayed.
     //The Country which is chosen. Deafault value is answer here.
-var answeredCountry = "Answer Here";
+var answeredCountry = "";
 var score = 0; //Number of correct answers
 var turnnumber = -1; // The turn number of the round.
 //var rightwrong = correctfunc(DisplayCountry, answeredCountry) //Is the state right or wrong? This will return either "correct" or "incorrect".
 //var colorchange = colorcountryfunc(rightwrong);
 //The multiple choice categories. This array will be the number.
 var Multiplechoice = [];
+
 //Choices function. Randomly assigns the coutry and 2 other countries to choose from.
 var currentchoiceone = " ";
 var currentchoicetwo = " ";
 var currentchoicethree= " ";
-//Selects and displays the choices on offer.
 
 //To display the choices.
-
+//If the country has already been chosen. 
+var alreadychosen = [];
 
 function choices() {
-// Correct Answer
-var randomindexnumber = Math.floor(Math.random()*42)+0;
+// Correct Answer    
+var answernumber = Math.ceil(Math.random()*countriesonmap.length-1);
 
+    function answernumberfunc() {
+        if(turnnumber > 42){endofgame();}
+        if (alreadychosen.indexOf(answernumber) >= 0) {
+   choices();
+//        console.log(answernumber);    
+}
+        else{alreadychosen.push(answernumber);}
+    };
 
+    answernumberfunc();
+    
 
-
-
-
-
-
-
+var fourrandomnumbers = []; 
+//Creating random answers 
+function four_random_numbers(){
+   
+    var arr = []
+while(arr.length < 3){
+  var randomnumber=Math.ceil(Math.random()*countriesonmap.length-1)
+  if(randomnumber==answernumber){
+      randomnumber=Math.ceil(Math.random()*countriesonmap.length-1)
+  }
+  var found=false;
+  for(var i=0;i<arr.length;i++){  
+	if(arr[i]==randomnumber){found=true; break}  
+  }
+    if(!found)arr[arr.length]=randomnumber;    
+}
+fourrandomnumbers = arr;
+    console.log(fourrandomnumbers);
+    console.log(alreadychosen);
+};
+    four_random_numbers();
 
 
   console.log("countrynameslength=" + countrynames.length);
     var randomcountrynumber = Math.floor(Math.random() * countrynames.length);
-    globchosenrandomcountrynumber = randomcountrynumber;
-    var DisplayCountry2 = countrynames[randomcountrynumber];
+    globchosenrandomcountrynumber = answernumber;
+    var DisplayCountry2 = countrynames[answernumber];
     // var DisplayCountry2indexnumber = countrynames.indexOf(DisplayCountry2);
-    var DisplayCountrycca32 = cca3codes[randomcountrynumber];
-    var DisplayCountrycca22 = cca2codes[randomcountrynumber];
-    console.log(DisplayCountry2);
-    console.log(DisplayCountrycca22);
-
-    function contains(a, obj) {
-        for (var i = 0; i < a.length; i++) {
-            if (a[i] === obj) {
-                return true;
-            }
-        }
-        return false;
-    };
-    //Makes sure that the country is on the map.
-    // if (contains(countriesonmap, DisplayCountrycca22.toLowerCase()) === false) {
-    //     console.log("NOT ON MAP");
-    //     choices();
-    // }
-    // else {
-    //
-    //     console.log("On map")
-    // };
-//Console Log
+    
+    var DisplayCountrycca32 = cca3codes[answernumber];
+    var DisplayCountrycca22 = cca2codes[answernumber];
+//    console.log(DisplayCountry2);
+//    console.log(DisplayCountrycca22);
     console.log(DisplayCountry2);
     console.log(DisplayCountrycca32);
     console.log(DisplayCountrycca22);
-    //The problem is is when they are put back into the array, it changes the array order.
     DisplayCountry = DisplayCountry2;
     DisplayCountrycca3 = DisplayCountrycca32;
-    console.log("DisplayCountrycca125="+DisplayCountrycca3);
     DisplayCountrycca2 = DisplayCountrycca22;
-    //The function that will remove the country from the list.
-
-    function splicecountry(country) {
-        var displaycountryindex = countrynames.indexOf(country);
-        if (displaycountryindex > -1) {
-            countrynames.splice(displaycountryindex, 1);
-            cca3codes.splice(displaycountryindex, 1);
-            cca2codes.splice(displaycountryindex, 1);
-        }
-    };
-
     Multiplechoice.push(DisplayCountry);
 
     //Splice the display country from the countrynames array. I could create a forloop with the number of choices, but this could come later.
 
 
-  splicecountry(DisplayCountry);
+//  splicecountry(DisplayCountry);
 
 
   function randomchoices() {
-
-    var choiceone = randomcountry(countrynamesall);
-    var choicetwo = randomcountry(countrynamesall);
-      var choicethree = randomcountry(countrynamesall);
+console.log("random choice started"); 
+    var choiceone = countrynames[fourrandomnumbers[0]];
+      
+    var choicetwo = countrynames[fourrandomnumbers[1]];
+      var choicethree = countrynames[fourrandomnumbers[2]];
 
       var choiceoneindexnumber = countrynames.indexOf(choiceone);
       var choiceonecca3 = cca3codes[choiceoneindexnumber];
       var choiceonecca2 = cca2codes[choiceoneindexnumber];
-      splicecountry(choiceone);
-      //Splice choiceone from the countrynames array.
-      var choicetwo = randomcountry(countrynamesall);
+      
+      
       var choicetwoindexnumber = countrynames.indexOf(choicetwo);
       var choicetwocca3 = cca3codes[choicetwoindexnumber];
       var choicetwocca2 = cca2codes[choicetwoindexnumber];
-      //Splice choicetwo from the countrynames array.
-      splicecountry(choicetwo);
-  //    Third choice
-      var choicethree = randomcountry(countrynamesall);
+      
       var choicethreeindexnumber = countrynames.indexOf(choicethree);
       var choicethreecca3 = cca3codes[choicethreeindexnumber];
       var choicethreecca2 = cca2codes[choicethreeindexnumber];
-      splicecountry(choicethree);
+//      splicecountry(choicethree);
 
       Multiplechoice.push(choiceone);
       Multiplechoice.push(choicetwo);
@@ -196,11 +183,11 @@ var randomindexnumber = Math.floor(Math.random()*42)+0;
 
       //add Multiplechoice array back to the countrynames array.
   //Perhaps not push back the display country.
-      cca3codes.push(choiceonecca3, choicetwocca3, choicethreecca3);
-      cca2codes.push(choiceonecca2, choicetwocca2, choicethreecca2);
-      console.log(cca2codes.length);
-      //Note: no DisplayCountry Here, only push if it is INcorrect (i.e to go again).
-      countrynamesall.push(choiceone, choicetwo,choicethree);
+//      cca3codes.push(choiceonecca3, choicetwocca3, choicethreecca3);
+//      cca2codes.push(choiceonecca2, choicetwocca2, choicethreecca2);
+//      console.log(cca2codes.length);
+//      //Note: no DisplayCountry Here, only push if it is INcorrect (i.e to go again).
+//      countrynamesall.push(choiceone, choicetwo,choicethree);
 
       currentchoiceone = choiceone;
       console.log("choiceone " + choiceone);
@@ -208,11 +195,16 @@ var randomindexnumber = Math.floor(Math.random()*42)+0;
       console.log("choicetwo " + choicetwo);
       currentchoicethree= choicethree;
       console.log("choicethree " + choicethree);
-      if (currentchoiceone==currentchoicetwo|| currentchoicetwo==currentchoicethree|| currentchoiceone==currentchoicethree||DisplayCountry==currentchoiceone|| DisplayCountry==currentchoicetwo|| DisplayCountry==currentchoicethree) {
-      console.log("Duplicate Choice")
-      randomchoices();
-      }
-
+//      if (currentchoiceone==currentchoicetwo|| currentchoicetwo==currentchoicethree|| currentchoiceone==currentchoicethree||DisplayCountry==currentchoiceone|| DisplayCountry==currentchoicetwo|| DisplayCountry==currentchoicethree) {
+//      console.log("Duplicate Choice")
+//      randomchoices();
+//      }
+    document.getElementById(DisplayCountry).style.display = "block";
+    document.getElementById(currentchoiceone).style.display = "block";
+    document.getElementById(currentchoicetwo).style.display = "block";
+    document.getElementById(currentchoicethree).style.display = "block";
+    
+    console.log("random choice finished");  
     };
     randomchoices();
 
@@ -220,22 +212,22 @@ var randomindexnumber = Math.floor(Math.random()*42)+0;
 
 
 
-    document.getElementById(DisplayCountry).style.display = "block";
-    document.getElementById(currentchoiceone).style.display = "block";
-    document.getElementById(currentchoicetwo).style.display = "block";
-    document.getElementById(currentchoicethree).style.display = "block";
+
 
     function changeflag() {
         var flagcode = DisplayCountrycca3.toLowerCase();
-        console.log(flagcode);
+//        console.log(flagcode);
         //    document.getElementById("Flag_Image").src = "countries-master/countries-master/data/alb.svg";
-        console.log("flagcode"+flagcode);
+//        console.log("flagcode"+flagcode);
         document.getElementById("Flag_Image").src = "countries-master/countries-master/data/" + flagcode + ".svg";
 
     };
+    
+    
     changeflag();
+    
     decision();
-    changehtml();////////////////////////////////////////////////////////////////////////////////////////////
+    changehtml();
 
 
 
@@ -249,7 +241,7 @@ function colorcountry(stylehere) {
     var countryfill = document.getElementById(DisplayCountrycca2.toLowerCase());
     countryfillglob.push(DisplayCountrycca2.toLowerCase());
     // DisplayCountrycca2.toLowerCase();
-    console.log(countryfill);
+//    console.log(countryfill);
     var originalstyle = countryfill.getAttribute("style");
     console.log(originalstyle);
     countrystyleglob.push(originalstyle);
@@ -257,32 +249,40 @@ function colorcountry(stylehere) {
     countryfill.setAttribute("style", stylehere);
 };
 
-
-
-function decision() {
-    var buttons = document.getElementsByClassName("button");
+function nobuttons(){  var buttons = document.getElementsByClassName("button");
     var buttonsCount = buttons.length;
-
-     function nobuttons(){ for (var i = 0; i <= buttonsCount; i += 1){
-
+                     
+                     for (var i = 0; i < buttonsCount; i += 1){
                 if(buttons[i].style.display="block"){
                 buttons[i].style.display="none"
             }}};
 
+function decision() {
+    console.log("enterdecision");
+    var buttons = document.getElementsByClassName("button");
+    var buttonsCount = buttons.length;
+    console.log(buttons);
+    console.log("length of buttons is" + buttonsCount);
 
-//     document.getElementById(DisplayCountry).style.display = "inline";
-//     document.getElementById(currentchoiceone).style.display = "inline";
-//     document.getElementById(currentchoicetwo).style.display = "inline";
-// document.getElementById(currentchoicethree).style.display = "inline";
-    for (var i = 0; i <= buttonsCount; i += 1) {
+//     function nobuttons(){ for (var i = 0; i <= buttonsCount; i += 1){
+//
+//                if(buttons[i].style.display="block"){
+//                buttons[i].style.display="none"
+//            }}};
 
+    //THE CODE WORKS FOR buttons.length
+    for (var i = 0; i < buttons.length +1; i += 1) {
+console.log("enterforloop");
 
 
           buttons[i].onclick = function () {
-            console.log(buttons[i]);
+               console.log("Clicked on a button")
+               console.log( "Button Count is " + buttonsCount)
+//            console.log(buttons[i]);
             //Make sure no button is displayed.
 
             document.getElementById(DisplayCountry).style.display = "none";
+              console.log("Set the Button" +DisplayCountry+ "to None");
             document.getElementById(currentchoiceone).style.display = "none";
             document.getElementById(currentchoicetwo).style.display = "none";
              document.getElementById(currentchoicethree).style.display = "none";
@@ -294,13 +294,22 @@ function decision() {
               // alert("Correct!");
               score = score + 1;
               console.log("SCORE IS " + score);
-//Or createhtml() could be here.
-              document.getElementById("ScoreBox").innerHTML = score + "/26";
+
+              document.getElementById("ScoreBox").innerHTML = score + "/" +countriesonmap.length;
               var newelementdiv = document.createElement("p");
               newelementdiv.id="Country"+turnnumber;
               newelementdiv.className="finishednameCorrect";
               newelementdiv.innerHTML=DisplayCountry;
+             
+                
               document.getElementById("FinishedCountries").appendChild(newelementdiv);
+                
+            if(DisplayCountry=="Russia"){
+             var kalingradshape =   document.getElementById("russiak");
+            console.log(kalingradshape);    
+            kalingradshape.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
+            };    
+                
               colorcountry("fill:#68C398; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
               countrynamesall.push(DisplayCountry);
               cca2codes.push(DisplayCountrycca2);
@@ -313,112 +322,120 @@ function decision() {
               newelementdiv.className="finishednameWrong";
               newelementdiv.innerHTML=DisplayCountry;
               document.getElementById("FinishedCountries").appendChild(newelementdiv);
-              colorcountry("fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
+              
+                
+                if(DisplayCountry=="Russia"){
+             var kalingradshape =   document.getElementById("russiak");   
+            kalingradshape.setAttribute("style","fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
+            }; 
+                
+                
+                colorcountry("fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
               countrynamesall.push(DisplayCountry);
               cca2codes.push(DisplayCountrycca2);
               cca3codes.push(DisplayCountrycca3);
               endofturn();
             }
-//             if (document.getElementById("CountrySelectBox").innerHTML == document.getElementById("CountryBox").innerHTML) {
-//                 alert("Correct!");
-//                 colorcountry("stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:7.63942308;fill:green");
-// //Splice the country from the list so it will not be displayed again.
-//
-//                 score = score + 1;
-//
-// //                nobuttons();
-//               //  choices();
-//                 endofturn();
-//
-//             } else {
-//                 alert("Incorrect!");
-//                 colorcountry("stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:7.63942308;fill:#d81a1a");
-// //If incorrect push back
-//                 countrynames.push(DisplayCountry);
-//                 cca2codes.push(DisplayCountrycca2);
-//                 cca3codes.push(DisplayCountrycca3);
-//                 endofturn();
-//
-//             };
         }
+          
     }
+    console.log("exit onclick function")
 };
 
 
 
 
 
-//changing all of the HTML elements. It is also set at the beginning.
-
+//changing all of the HTML elements. Essentialy now just changing the score. 
 function changehtml() {
-    changeflag();
-    document.getElementById("TurnNumber").innerHTML = turnnumber;
-    document.getElementById("ScoreBox").innerHTML = score;
-    document.getElementById("CountryBox").innerHTML = DisplayCountry;
-    document.getElementById("CountrySelectBox").innerHTML = answeredCountry;
+    document.getElementById("ScoreBox").innerHTML = score + "/" +countriesonmap.length;
 };
-
-//Change html is set at the beginning. Tis could also be set through a button.
-
 
 
 //At the end of each turn.
 function endofturn() {
-    endofgame();
-    console.log("NUMBER OF COUNTRIES LEFT " + countrynames.length)
-    randomcountrynumber = Math.floor(Math.random() * countrynames.length);
-    Multiplechoice = [];
     turnnumber = turnnumber + 1;
+    if (turnnumber > 42){ endofgame()};
+    console.log("NUMBER OF COUNTRIES LEFT " + countrynames.length)
+    Multiplechoice = [];
     choices();
-    changehtml();
-    document.getElementById("CountrySelectBox").innerHTML = "Choose a Country";
 };
 
-//Starting the game
-function startgame() {
-        loadbuttons();
-    changehtml();
-};
 
-//Reset all countries colours
+//Reset all countries colours Including Kalingrad. 
 function resetallcolours() {
+    
+var kalingrad = document.getElementById("russiak");
+
+    kalingrad.setAttribute("style", "fill:#F6DD78; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
+    
 for (var i = 0; i <= countryfillglob.length; i += 1) {
-console.log(countryfillglob)
+//console.log(countryfillglob)
     var resetcountry = document.getElementById(countryfillglob[i]);
-    console.log(resetcountry);
-    console.log("RESETTING");
-     console.log(resetcountry);
+//    console.log(resetcountry);
+    console.log("RESETTING Country");
+//     console.log(resetcountry);
     if (resetcountry!== null){
     resetcountry.setAttribute("style", countrystyleglob[i])};
 }};
 
+//Resets the Box at the bottom of the screen. 
+function resetansweredbox() {
+     console.log("RESETANWEREBOX"); 
+    var wrongcountries =      
+ document.getElementsByClassName("finishednameWrong");
+    
+    for (var i = 0; i < wrongcountries.length; i += 1) {
+ wrongcountries[i].style.display = "none"; }
+    console.log(wrongcountries);
+   
+   var correctcountries = document.getElementsByClassName("finishednameCorrect");
+    console.log("correce"+correctcountries);
+     for (var i = 0; i < correctcountries.length; i += 1) {
+ correctcountries[i].style.display = "none"; }
+    console.log(wrongcountries);
+};
 
-//At the end of the game. What happens?
+
+//At the end of the game.What happens? 
 function endofgame() {
-    if (turnnumber > 5) {
+     {
         alert("end of game! You scored " + score + " out of " + turnnumber);
+        resetansweredbox();
+        alreadychosen = [];
         resetallcolours();
         turnnumber = 0;
         score = 0;
+//         choices();
         changehtml();
-
+       
     }
 };
 
 
-//Thes button are not really needed.
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// var newroundbutton = document.getElementById("newround");
-// newroundbutton.onclick = function () {
-//     endofturn();
-// };
-// var startbutton = document.getElementById("startbutton");
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// startbutton.onclick = function () {
-//     startgame();
-//     endofturn();
-//
-// };
+//This is the start button which is clicked. 
+function startbutton() {   
+      if(document.getElementById(DisplayCountry) !== null && document.getElementById(currentchoiceone) !== null && document.getElementById(currentchoicetwo) !== null && document.getElementById(currentchoicethree)!== null) {
+ //If there are buttons, set them to no display.      
+    document.getElementById(DisplayCountry).style.display = "none";
+            document.getElementById(currentchoiceone).style.display = "none";
+            document.getElementById(currentchoicetwo).style.display = "none";
+             document.getElementById(currentchoicethree).style.display = "none"; };   
+    document.getElementById("ScoreBox").innerHTML = "0" + "/" +countriesonmap.length;
+    resetansweredbox();
+        alreadychosen = [];
+        resetallcolours();  
+    turnnumber = 0;
+        score = 0;
+         choices();
+};
+//This is the STOP GAME button
+function stopgamebutton() {
+    console.log("RESTART BUTTON");
+    document.getElementById("ScoreBox").innerHTML = "0" + "/" +countriesonmap.length;
+    document.getElementById("Flag_Image").src = "";
+      document.getElementById(DisplayCountry).style.display = "none";
+            document.getElementById(currentchoiceone).style.display = "none";
+            document.getElementById(currentchoicetwo).style.display = "none";
+             document.getElementById(currentchoicethree).style.display = "none";
+};
