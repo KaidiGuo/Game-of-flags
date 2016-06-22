@@ -35,11 +35,14 @@ body{
 }
 .flag{
   /*border: 1px solid white;*/
+
 }
 .flag img{
   margin-top: 10%;
   margin-bottom: 10%;
-  width: 35%;
+  /*width: 35%;*/
+  height: 100px;
+  /*height:3%; */
 }
 .buttons{
   position: relative;
@@ -84,11 +87,7 @@ body{
   /*border: 1px solid green;*/
 
 }
-.map img{
-  float: right;
-  width: 92%;
-  /*border: 1px solid red;*/
-}
+
 
 .map svg{
   margin: 0px;
@@ -176,7 +175,8 @@ body{
   position: absolute;
   color: white;
   top: -50px;
-  left: -20px;
+  /*left: -20px;*/
+  right:-20px;
 }
 
 @media (max-width: 1000px) {
@@ -196,6 +196,13 @@ body{
       border-right:20px solid red;
       border-bottom:20px solid transparent;
 
+  }
+  .flag img{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    /*width: 35%;*/
+    height: 90px;
+    /*height:3%; */
   }
 
 }
