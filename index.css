@@ -423,7 +423,7 @@ li {
 
 
 }
-@media (max-height: 600px) {
+@media (-webkit-min-device-pixel-ratio:2),(min-resolution: 190dpi) {
   body{
     text-align: center;
   }
