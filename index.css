@@ -1,3 +1,4 @@
+
 html{
   height: 100%;
 }
@@ -18,9 +19,11 @@ body{
   float: left;
   padding-top: 1%;;
   padding-right: 2%;
-  height: 75%;
+  /*height: 75%;*/
+  height: auto;
   /*border: 3px solid yellow;*/
 }
+
 .bar{
   position: relative;
   display: block;
@@ -37,24 +40,31 @@ body{
   /*border: 1px solid black;*/
   width: 90%;
 }
-.rules{
+/*.rules{
   height: 38%;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
   background-color: green;
   text-align: left;
+}*/
+.barabove{
+  /*border: 1px solid red;*/
+  width: 100%;
+  height: auto;
+  /*height: 300px;*/
 }
-
 #absolutebox{
   /*display: none;*/
-  position: absolute;
-  padding-top: 15%;
+  /*position: absolute;*/
+  padding-top: 10%;
   /*padding-left: 5%;*/
   z-index: 300;
   height:60%;
   width: 85%;
+  /*background-color: rgb(145, 195, 161);*/
   background-color: rgb(145, 164, 195);
+
   margin-left: 10%;
 
 }
@@ -72,12 +82,13 @@ body{
 
 }
 #Flag_Image{
+  display: none;
   margin-top: 3%;
   margin-bottom: 3%;
   margin-left: auto;
   margin-right: auto;
-  width: 35%;
-  height: 150px;
+  /*width: 35%;*/
+  height: 120px;
 }
 .buttons{
   position: relative;
@@ -140,8 +151,9 @@ body{
   /*display: inline-block;*/
   position: relative;
   text-align: center;
-  width: 64%;
-  height: 100%;
+  width: 43%;
+  /*height: 100%;*/
+  /*display: none;*/
   /*border: 1px solid green;*/
 
 }
@@ -154,6 +166,12 @@ body{
   float: right;
   /*width: 50%;*/
   height: 100%;
+}
+.divided{
+  width: 100%;
+  height: 1px;
+  /*background-color: green;*/
+  clear: both;
 }
 
 .under{
@@ -400,11 +418,12 @@ li {
     float: right;
     width: 100%;
     height: auto;
+
   }
 
 
 }
-@media (max-height: 720px) {
+@media (max-height: 600px) {
   body{
     text-align: center;
   }
@@ -439,22 +458,24 @@ li {
     .logo{
       margin-top: 5%;
     }
-    .rules{
+    /*.rules{
       height: 20%;
       width: 50%;
       margin-left: auto;
       margin-right: auto;
       background-color: green;
       text-align: left;
-    }
+    }*/
     #absolutebox{
       /*display: none;*/
-      position: absolute;
+      /*position: absolute;*/
       padding-top: 15%;
       z-index: 300;
       height:40%;
       width: 80%;
       background-color: rgb(145, 164, 195);
+      /*background-color: rgb(123, 190, 145);*/
+
 
     }
     .above{
@@ -572,19 +593,19 @@ li {
     .logo{
       margin-top: 5%;
     }
-    .rules{
+    /*.rules{
       height: 20%;
       width: 50%;
       margin-left: auto;
       margin-right: auto;
       background-color: green;
       text-align: left;
-    }
+    }*/
     #absolutebox{
       /*border: 1px solid red;*/
       /*display: none;*/
       text-align: center;
-      position: absolute;
+      /*position: absolute;*/
       padding-top: 15%;
       z-index: 300;
       height:40%;

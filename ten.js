@@ -8,7 +8,7 @@ var countriesonmap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz"
 
 //First, this loads the countries. And the country buttons
 function loadcountries() {
-    d3.json("countries.json", function (data) {
+    d3.json("countries.txt", function (data) {
 
         for (var i = 0; i < data.length; i++) {
             //Selecting only European Countries.
@@ -427,6 +427,8 @@ function startbutton() {
     document.getElementById("ScoreBox").innerHTML = "0" + "/" +countriesonmap.length;
     document.getElementById("rulebox").style.display = "none";
     document.getElementById("absolutebox").style.display = "none";
+    document.getElementById("Flag_Image").style.display = "block";
+
     document.getElementById("start1").innerHTML = "Restart";
 
 
@@ -491,6 +493,6 @@ var Mapview = 1;
 
 
 
- 
+
 
  // You can start working with your map here
