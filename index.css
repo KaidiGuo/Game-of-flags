@@ -3,6 +3,7 @@ html{
 }
 body{
   background-color: rgb(145, 164, 195);
+font-family:  'Gudea', sans-serif;
   margin: 0px;
   padding: 0px;
   width: 100%;
@@ -18,37 +19,103 @@ body{
   float: left;
   padding-top: 1%;;
   padding-right: 2%;
+  /*height: 75%;*/
   height: auto;
   /*border: 3px solid yellow;*/
 }
+
 .bar{
+  position: relative;
+  display: block;
+  padding-left: 1%;
   text-align: center;
   float: left;
   /*background-color: green;*/
-  /*border: 1px solid black;*/
   width: 35%;
-  height: 60%;
+  height: 100%;
+
+  /*border: 1px solid red;*/
 }
 .logo img{
   /*border: 1px solid black;*/
   width: 90%;
 }
-.flag{
-  /*border: 1px solid white;*/
+/*.rules{
+  height: 38%;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: green;
+  text-align: left;
+}*/
+.barabove{
+  /*border: 1px solid red;*/
+  width: 100%;
+  height: auto;
+  /*height: 300px;*/
 }
-.flag img{
-  margin-top: 10%;
-  margin-bottom: 10%;
-  width: 35%;
+#absolutebox{
+  /*display: none;*/
+  /*position: absolute;*/
+  padding-top: 10%;
+  /*padding-left: 5%;*/
+  z-index: 300;
+  height:60%;
+  width: 85%;
+  /*background-color: rgb(145, 195, 161);*/
+  background-color: rgb(145, 164, 195);
+
+  margin-left: 10%;
+
+}
+.rules p{
+  color: rgb(255, 255, 255);
+ 
+  margin: 5px;
+
+}
+.rules em{
+  font-style: normal;
+  color:rgb(64, 81, 132);
+}
+.flag{
+
+}
+#Flag_Image{
+  display: none;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100px;
 }
 .buttons{
   position: relative;
   /*background-color: green;*/
   /*border: 1px solid white;*/
 }
+.notbutton{
+  background-color: rgb(64, 81, 132);
+  font-size: 120%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3%;
+  padding: 5px;
+  left: 0px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  text-align:center;
+  width: 70%;
+  /*border:1px solid;*/
+}
+
+
+
+
+
 .button{
   background-color: rgb(64, 81, 132);
-  font-size: 140%;
+  font-size: 120%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 5%;
@@ -58,18 +125,23 @@ body{
   text-decoration: none;
   text-align:center;
   width: 70%;
-  /*border:1px solid;*/
+cursor:pointer;
+
 }
 .restartbuttons{
+cursor:pointer;
   /*border: 1px solid red;*/
 }
 .start{
-  margin-top: 10%;
+  margin-top: 5%;
   width: 30%;
   background-color: white;
   color: rgb(64, 81, 132);
 }
 
+#seemap{
+  display: none;
+}
 
 
 
@@ -80,22 +152,27 @@ body{
   /*display: inline-block;*/
   position: relative;
   text-align: center;
-  width: 65%;
+  width: 45%;
+  height: 100%;
+  /*display: none;*/
   /*border: 1px solid green;*/
 
 }
-.map img{
-  float: right;
-  width: 92%;
-  /*border: 1px solid red;*/
-}
+
 
 .map svg{
   margin: 0px;
   padding: 0px;
   position: relative;
   float: right;
-  width: 90%;
+  /*width: 50%;*/
+  height: 100%;
+}
+.divided{
+  width: 100%;
+  height: 1px;
+  /*background-color: green;*/
+  clear: both;
 }
 
 .under{
@@ -124,7 +201,7 @@ body{
  .names{
   float: right;
   /*margin-left: 3%;*/
-  width: 90%;
+  width: 92%;
   height: 100%;
 
   /*margin-top: 1%;*/
@@ -132,18 +209,19 @@ body{
 }
 .finishednameCorrect{
   color: white;
-  font-size: 120%;
+  font-size: 100%;
   display: inline-block;
   /*border: 1px solid green;*/
   margin: 0.5%;
 }
 .finishednameWrong {
-  font-size: 120%;
+  font-size: 100%;
   display: inline-block;
   /*border: 1px solid green;*/
   margin: 0.5%;
   padding-left: 3px;
   padding-right: 3px;
+  padding-bottom: 2px;
   color: white;
   background-color: rgb(255, 0, 0);
 }
@@ -153,10 +231,10 @@ body{
     margin-left: 2%;
     width: 0px;
     height: 0px;
-    border-top: 50px solid red;
-    border-left:30px solid red;
-    border-right:30px solid red;
-    border-bottom:30px solid transparent;
+    border-top: 40px solid red;
+    border-left:20px solid red;
+    border-right:20px solid red;
+    border-bottom:20px solid transparent;
 
 }
 .box2{
@@ -164,23 +242,151 @@ body{
   margin-left: 2%;
   width: 0px;
   height: 0px;
-  border-top: 50px solid red;
-  border-left:30px solid red;
-  border-right:30px solid red;
-  border-bottom:30px solid transparent;
-  border-bottom:30px solid transparent;
+  border-top: 70px solid red;
+  border-left:40px solid red;
+  border-right:40px solid red;
+  border-bottom:40px solid transparent;
+
   top: 0px;
   right: 8%;
 }
 .box2 p{
   position: absolute;
   color: white;
-  top: -50px;
+  top: -70px;
   left: -20px;
 }
 
-@media (max-width: 1000px) {
-  .button{
+
+/*Here goes style for pop-up box*/
+em{
+  color:
+}
+#moreinfo {
+    padding-left: 2%;
+    padding-bottom: 0.5%;
+    /*font-size: 120%;*/
+    }
+#myBtn {
+    color: red;
+    }
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    font-size: 80%;
+  
+    }
+
+.modal h1{
+  margin: 30px;
+
+}
+/* Modal Content */
+.modal-content {
+
+    background-color: rgb(145, 164, 195);
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+    height: 70%;
+    }
+/* The Close Button */
+.close {
+    color: red;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+.close:hover,
+.close:focus {
+    cursor: pointer;
+    }
+h1 {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding: 0%;
+    margin: 0%;
+    }
+.popContent{
+  float: left;
+  /*border: 1px solid yellow;*/
+}
+#author_information {
+    /*border: 1px solid green;*/
+    float: left;
+    /*position: relative;*/
+
+    width: 60%;
+
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+    }
+    #map {
+      /*position: relative;
+
+      /*margin-top: -400px;*/
+      float: left;
+      margin-left: 30px;
+      width: 30%;
+      height: 400px;
+    }
+
+
+.author {
+    width: 60%;
+    margin: 5px;
+    align-items: center;
+    }
+.author_name, .author_img {
+    text-align:center;
+    vertical-align: middle;
+    padding: 0%;
+    margin: 0%;
+    }
+.author_work {
+    text-align:left;
+    vertical-align: top;
+    }
+ul{
+  list-style-type: none;
+}
+.Aname{
+  color: rgb(255, 255, 255);
+  background-color: rgb(64, 81, 133);
+  padding: 5px;
+
+
+
+}
+li {
+    margin-left: 0px;
+    margin: 5px;
+    }
+.infoline{
+
+}
+.infoline p{
+  margin: 0px;
+  padding: 0px;
+  
+  font-size: 10px;
+  color: rgb(255, 255, 255);
+}
+
+
+
+@media (max-width: 1150px) {
+  .notbutton{
     font-size: 100%;
   }
   .names p{
@@ -197,61 +403,328 @@ body{
       border-bottom:20px solid transparent;
 
   }
-
+.map{
+  /*border: 1px solid red;*/
 }
 
-@media (max-width: 800px) {
-body{
-  text-align: center;
+.bar p{
+  font-size: 80%;
+
 }
-  .bar{
-    display: none;
+  .map svg{
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    top: 0px;
+    float: right;
+    width: 100%;
+    height: auto;
+
+  }
+
+
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 190dpi) {
+  body{
+    text-align: center;
+    font-size:200%;
   }
   .above{
-    padding: 0px;
-  }
-  .under{
-    display: none;
-  }
-  .map{
-    width: 100%;
-  }
-  .map img{
-    float:none;
-    width: 92%;
-    /*border: 1px solid red;*/
-  }
-  .slogo{
-    text-align: center;
-    display: block;
-    width: 100%;
-    padding-top: 5%;
-    padding-bottom: 5%;
-
-  }
-  .slogo img{
-    margin: 2%;
-    width: 70%;
-  }
-  .sunder{
     float: left;
-    width: 100%;
-    /*height: 100px;*/
+    padding-top: 1%;;
+    padding-right: 2%;
     height: auto;
   }
-  .sbutton {
-    background-color: rgb(64, 81, 132);
-    font-size: 140%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    padding: 5px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    text-align:center;
-    width: 150px;
-  }
+    .bar{
+      padding-top: 3%;
+      display: none;
+      position: absolute;
+      z-index: 600;
+      top: 0px;
+      background-color:  rgb(145, 164, 195);
+      width: 100%;
+      padding: 0px;
+      margin: 0px;
+    }
+    #seemap{
+      display: block;
+    }
+    #Continue{
+      display: none;
+    }
+    #map {
+    display: none;
+
+
+    }
+    .logo{
+      margin-top: 5%;
+    }
+    /*.rules{
+      height: 20%;
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: green;
+      text-align: left;
+    }*/
+    #absolutebox{
+      /*display: none;*/
+     
+      padding-top: 15%;
+      z-index: 300;
+      height:40%;
+      width: 80%;
+      background-color: rgb(145, 164, 195);
+      /*background-color: rgb(123, 190, 145);*/
+
+
+    }
+    .above{
+      /*border: 1px solid black;*/
+
+      padding: 0px;
+    }
+    .under{
+      display: none;
+    }
+    .map{
+      width: 100%;
+      padding: 0px;
+    }
+    .map svg{
+      width: 90%;
+      float: none;
+      /*border: 1px solid red;*/
+    }
+    .slogo{
+      text-align: center;
+      display: block;
+      width: 100%;
+      padding-top: 5%;
+      padding-bottom: 5%;
+
+    }
+    .slogo img{
+      margin: 2%;
+      width: 70%;
+    }
+
+    .sunder{
+      display: block;
+      float: left;
+      width: 100%;
+      /*height: 100px;*/
+      height: auto;
+      /*border: 1px solid yellow;*/
+
+    }
+    .sbutton {
+      background-color: rgb(64, 81, 132);
+      font-size: 200%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5%;
+      padding: 5px;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      text-align:center;
+      width: 280px;
+    }
+#Flag_Image{
+  display: none;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 210px;
+}
+    .infoline {
+      float:left;
+      margin-top: 14%;
+     
+      /*border: 1px solid red;*/
+    }
+ .infoline p{
+font-size:80%;
+}
+    #author_information {
+        font-size:50%;
+      /*border: 1px solid red;*/
+        position: absolute;
+        float: none;
+        width: 80%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+
+        }
+    .author {
+        width: 80px;
+        margin: 5px;
+        align-items: center;
+        }
+.button{
+  background-color: rgb(64, 81, 132);
+  font-size: 200%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5%;
+  padding: 10px;
+  left: 0px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  text-align:center;
+  width: 70%;
+
+}
+.start{
+font-size: 200%;
+}
+
+.restartbuttons{
+display:flex;
+}
+
 
 
 
 }
+@media (max-width: 800px)  {
+  body{
+    text-align: center;
+  }
+  .above{
+    float: left;
+    padding-top: 1%;;
+    padding-right: 2%;
+    height: auto;
+  }
+    .bar{
+      padding-top: 3%;
+      display: none;
+      position: absolute;
+      z-index: 600;
+      top: 0px;
+      background-color:  rgb(145, 164, 195);
+      width: 100%;
+      padding: 0px;
+      margin: 0px;
+    }
+    #seemap{
+      display: block;
+    }
+    #Continue{
+      display: none;
+    }
+    #map {
+    display: none;
+
+
+    }
+    .logo{
+      margin-top: 5%;
+    }
+    /*.rules{
+      height: 20%;
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: green;
+      text-align: left;
+    }*/
+    #absolutebox{
+      /*border: 1px solid red;*/
+      /*display: none;*/
+      text-align: center;
+     
+      padding-top: 15%;
+      z-index: 300;
+      height:40%;
+      width: 80%;
+      background-color: rgb(145, 164, 195);
+
+    }
+    .above{
+      /*border: 1px solid black;*/
+
+      padding: 0px;
+    }
+    .under{
+      display: none;
+    }
+    .map{
+      width: 100%;
+      padding: 0px;
+    }
+    .map svg{
+      width: 90%;
+      float: none;
+      /*border: 1px solid red;*/
+    }
+    .slogo{
+      text-align: center;
+      display: block;
+      width: 100%;
+      padding-top: 5%;
+      padding-bottom: 5%;
+
+    }
+    .slogo img{
+      margin: 2%;
+      width: 70%;
+    }
+
+    .sunder{
+      display: block;
+      float: left;
+      width: 100%;
+      /*height: 100px;*/
+      height: auto;
+      /*border: 1px solid yellow;*/
+
+    }
+    .sbutton {
+      background-color: rgb(255, 255, 255);
+      font-size: 120%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5%;
+      padding: 5px;
+      color: rgb(64, 81, 132);
+      text-decoration: none;
+      text-align:center;
+      width: 150px;
+    }
+
+    .infoline {
+      float: left;
+      margin-top: 4%;
+      /*border: 1px solid red;*/
+    }
+    #author_information {
+        font-size:50%;
+        position: absolute;
+
+        float: none;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        height: auto;
+
+        }
+    .author {
+        width: 80px;
+        /*height: 20%;*/
+        margin: 5px;
+        align-items: center;
+        }
+
+
+
+}
+
