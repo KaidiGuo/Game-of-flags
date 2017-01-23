@@ -6,9 +6,9 @@ var countriesOnMap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz"
 
 //First, this loads the countries. And the country buttons
 function loadCountries() {
-    var svgEurope = document.getElementById("europe-svg");
-    var svgEuropeInner = svgEurope.contentDocument;
-    var kaliNew = svgEuropeInner.getElementById("russiak");
+    svgEurope = document.getElementById("europe-svg");
+    svgEuropeInner = svgEurope.contentDocument;
+    kaliNew = svgEuropeInner.getElementById("russiak");
     kaliNew.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:20; stroke-miterlimit:10");
 
     d3.json("countries.txt", function (data) {
@@ -86,6 +86,12 @@ var currentchoicethree = " ";
 //To display the choices.
 //If the country has already been chosen.
 var alreadychosen = [];
+
+// Kalingrad
+var svgEurope = ";"
+var svgEuropeInner = "";
+var kaliNew = "";
+
 
 function choices() {
 // Correct Answer
@@ -303,7 +309,7 @@ function decision() {
                 document.getElementById("FinishedCountries").appendChild(newelementdiv);
 
                 if (DisplayCountry == "Russia") {
-                    var kalingradshape = document.getElementById("russiak");
+                    var kalingradshape = svgEuropeInner.getElementById("russiak");
                     console.log(kalingradshape);
                     kalingradshape.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
                 }
@@ -324,7 +330,7 @@ function decision() {
 
 
                 if (DisplayCountry == "Russia") {
-                    var kalingradshape = document.getElementById("russiak");
+                    var kalingradshape = svgEuropeInner.getElementById("russiak");
                     kalingradshape.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
                 }
                 ;
@@ -365,7 +371,7 @@ function endofturn() {
 //Reset all countries colours Including Kalingrad.
 function resetallcolours() {
 
-    var kalingrad = document.getElementById("russiak");
+    var kalingrad = svgEuropeInner.getElementById("russiak");
 
     kalingrad.setAttribute("style", "fill:#F6DD78; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
 
