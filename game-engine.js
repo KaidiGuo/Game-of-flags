@@ -1,7 +1,8 @@
 // List of Global Variables ---------------------------------------------------
-var correctCountryCca3 = " ";
-var correctCountryCca2 = " ";
-var correctCountryName = " ";
+var answerNumber = 0;
+var correctCountryName, correctCountryCca3,correctCountryCca2;
+
+
 //The Country which is chosen. Default value is answer here.
 //The multiple choice categories.
 var multipleChoiceArrayNames = [];
@@ -10,14 +11,6 @@ var multipleChoiceArrayNames = [];
 var answeredCountry = "";
 var score = 0; //Number of correct answers
 var turnNumber = -1; // The turn number of the round.
-
-
-
-
-//Choices function
-var currentChoiceOne = " ";
-var currentChoiceTwo = " ";
-var currentChoiceThree = " ";
 
 
 var previousChoiceArray = [];
@@ -84,9 +77,11 @@ function loadCountries() {
     })
 
 }
+
+//TODO: number of turns, number of choices,
 function choices() {
 // Correct Answer
-    var answerNumber = Math.ceil(Math.random() * countriesOnMap.length - 1);
+    answerNumber = Math.ceil(Math.random() * countriesOnMap.length - 1);
 
     function answernumberfunc() {
         if (turnNumber > 42) {
@@ -100,10 +95,11 @@ function choices() {
         }
     }
 //Creating random answers
-    function funcFourRanNums() {
+    //TODO: number of random numbers
+    function randomNumbersFunction(countOfNumbers) {
 
         var arr = [];
-        while (arr.length < 3) {
+        while (arr.length < countOfNumbers) {
             var randomnumber = Math.ceil(Math.random() * countriesOnMap.length - 1);
             if (randomnumber == answerNumber) {
                 randomnumber = Math.ceil(Math.random() * countriesOnMap.length - 1)
@@ -117,42 +113,38 @@ function choices() {
             }
             if (!found)arr[arr.length] = randomnumber;
         }
-        fourRandomNumbers = arr;
+        randomNumbersArray = arr;
     }
-    function randomChoices() {
-        var choiceOne = countryNames[fourRandomNumbers[0]];
-        var choiceTwo = countryNames[fourRandomNumbers[1]];
-        var choiceThree = countryNames[fourRandomNumbers[2]];
 
-        multipleChoiceArrayNames.push(choiceOne);
-        multipleChoiceArrayNames.push(choiceTwo);
-        multipleChoiceArrayNames.push(choiceThree);
-        
-        currentChoiceOne = choiceOne;
-        console.log("choiceOne " + choiceOne);
-        currentChoiceTwo = choiceTwo;
-        console.log("choiceTwo " + choiceTwo);
-        currentChoiceThree = choiceThree;
-        console.log("choiceThree " + choiceThree);
-        for (i=0; i< multipleChoiceArrayNames.length-1; i++) {
+    // TODO: number of random choices (already described so just use a for loop from the previous one.
+    function randomChoices() {
+        console.log(randomNumbersArray);
+         for (i=0; i< randomNumbersArray.length; i++) {
+             multipleChoiceArrayNames.push(countryNames[randomNumbersArray[i]]);
+         }
+        console.log(multipleChoiceArrayNames);
+        for (i=0; i< multipleChoiceArrayNames.length; i++) {
+            console.log(multipleChoiceArrayNames[i]);
             document.getElementById(multipleChoiceArrayNames[i]).style.display = "block";
         }
         console.log("random choice finished");
     }
-    function changeflag() {
-        var flagcode = correctCountryCca3.toLowerCase();
-        document.getElementById("Flag_Image").src = "countries-master/countries-master/data/" + flagcode + ".svg";
+
+
+    function changeFlag() {
+        var flagCode = correctCountryCca3.toLowerCase();
+        document.getElementById("Flag_Image").src = "countries-master/countries-master/data/" + flagCode + ".svg";
     }
+
     answernumberfunc();
-    var fourRandomNumbers = [];
-    funcFourRanNums();
+    var randomNumbersArray = [];
+    randomNumbersFunction(3);
+    randomChoices();
+    console.log(answerNumber);
     correctCountryName = countryNames[answerNumber];
     correctCountryCca3 = cca3codes[answerNumber];
     correctCountryCca2 = cca2codes[answerNumber];
-    multipleChoiceArrayNames.push(correctCountryName);
-    console.log(multipleChoiceArrayNames);
-    randomChoices();
-    changeflag();
+    changeFlag();
     decision();
     changehtml();
 }
@@ -171,7 +163,6 @@ function colorcountry(stylehere) {
     countryShapeFill.setAttribute("style", stylehere);
 }
 function decision() {
-    console.log("enterdecision");
     var buttons = document.getElementsByClassName("button");
     var buttonsCount = buttons.length;
     console.log(buttons);
@@ -190,9 +181,10 @@ function decision() {
             console.log("display country is " + correctCountryName);
             document.getElementById(correctCountryName).style.display = "none";
             console.log("Set the Button" + correctCountryName + "to None");
-            document.getElementById(currentChoiceOne).style.display = "none";
-            document.getElementById(currentChoiceTwo).style.display = "none";
-            document.getElementById(currentChoiceThree).style.display = "none";
+
+            for (i=0; i< multipleChoiceArrayNames.length; i++) {
+            document.getElementById(multipleChoiceArrayNames[i]).style.display = "none";
+        }
             answeredCountry = this.id;
             // document.getElementById("CountrySelectBox").innerHTML = answeredCountry;
             console.log(answeredCountry + "   ");
@@ -289,15 +281,12 @@ function resetansweredbox() {
 }
 function resetChoices() {
     correctCountryName = "";
-    currentChoiceOne= "";
-    currentChoiceTwo= "";
-    currentChoiceThree= "";
+    multipleChoiceArrayNames= [];
 }
 
 
-//At the end of the game.What happens?
+//At the end of the game...
 function endofgame() {
-    {
         alert("End of game! You scored " + score + " out of " + turnNumber);
         resetansweredbox();
         previousChoiceArray = [];
@@ -306,25 +295,22 @@ function endofgame() {
         score = 0;
 //         choices();
         changehtml();
-
-    }
 }
+
+function setDisplayStyle(id,displayStyle){
+    document.getElementById(id).style.display = displayStyle;
+}
+
 //This is the start button which is clicked.
 function startbutton() {
-    console.log("start button function clicked");
-    console.log("DisplayCOuntry is " + correctCountryName);
-    console.log("DisplayCOuntry is " + currentChoiceOne);
-    console.log("DisplayCOuntry is " + currentChoiceTwo);
-    console.log(document.getElementById(currentChoiceThree));
 
-    if (document.getElementById(correctCountryName) !== null && document.getElementById(currentChoiceOne) !== null) {
+//TODO: for each of the elements in multiple choice array !== null.
+    if (document.getElementById(correctCountryName) !== null) {
         //If there are buttons, set them to no display.
-        console.log("setting to none");
-        console.log("multichoicearr is " + multipleChoiceArrayNames);
         for (i=0; i<multipleChoiceArrayNames.length; i++){
-            document.getElementById(multipleChoiceArrayNames[i]).style.display = "none";
+            //document.getElementById(multipleChoiceArrayNames[i]).style.display = "none";
+            setDisplayStyle(multipleChoiceArrayNames[i],"none");
         }
-
 
     }
     document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesOnMap.length;
@@ -344,11 +330,6 @@ function startbutton() {
     multipleChoiceArrayNames=[];
     choices();
 }
-
-
-
-
-
 
 
 //Descibes JavaScript code for pop-up box
@@ -371,7 +352,6 @@ function showbar() {
     document.getElementById("mybar").style.display = "block";
     document.getElementById("Continue").style.display = "block";
     document.getElementById("sstart").style.display = "none";
-
 }
 var Mapview = 1;
 function see() {
