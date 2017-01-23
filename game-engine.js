@@ -1,26 +1,26 @@
 // List of Global Variables ---------------------------------------------------
-var globchosenrandomcountrynumber = " ";
-var DisplayCountrycca3 = " ";
-var DisplayCountrycca2 = " ";
-var DisplayCountry = " ";
+var correctCountryCca3 = " ";
+var correctCountryCca2 = " ";
+var correctCountryName = " ";
 //The Country which is chosen. Default value is answer here.
+//The multiple choice categories.
+var multipleChoiceArrayNames = [];
+
 
 var answeredCountry = "";
 var score = 0; //Number of correct answers
 var turnNumber = -1; // The turn number of the round.
 
 
-//The multiple choice categories.
-var multipleChoiceArray = [];
+
 
 //Choices function
-var currentchoiceone = " ";
-var currentchoicetwo = " ";
-var currentchoicethree = " ";
+var currentChoiceOne = " ";
+var currentChoiceTwo = " ";
+var currentChoiceThree = " ";
 
-//To display the choices.
-//If the country has already been chosen.
-var alreadychosen = [];
+
+var previousChoiceArray = [];
 
 // Kalingrad
 var svgEurope = "";
@@ -83,9 +83,7 @@ function loadCountries() {
         }
     })
 
-};
-
-
+}
 function choices() {
 // Correct Answer
     var answerNumber = Math.ceil(Math.random() * countriesOnMap.length - 1);
@@ -94,22 +92,19 @@ function choices() {
         if (turnNumber > 42) {
             endofgame();
         }
-        if (alreadychosen.indexOf(answerNumber) >= 0) {
+        if (previousChoiceArray.indexOf(answerNumber) >= 0) {
             choices();
         }
         else {
-            alreadychosen.push(answerNumber);
+            previousChoiceArray.push(answerNumber);
         }
-    };
-
-
-
+    }
 //Creating random answers
     function funcFourRanNums() {
 
-        var arr = []
+        var arr = [];
         while (arr.length < 3) {
-            var randomnumber = Math.ceil(Math.random() * countriesOnMap.length - 1)
+            var randomnumber = Math.ceil(Math.random() * countriesOnMap.length - 1);
             if (randomnumber == answerNumber) {
                 randomnumber = Math.ceil(Math.random() * countriesOnMap.length - 1)
             }
@@ -123,70 +118,58 @@ function choices() {
             if (!found)arr[arr.length] = randomnumber;
         }
         fourRandomNumbers = arr;
-    };
-
-
-
-
+    }
     function randomChoices() {
         var choiceOne = countryNames[fourRandomNumbers[0]];
         var choiceTwo = countryNames[fourRandomNumbers[1]];
         var choiceThree = countryNames[fourRandomNumbers[2]];
 
-        multipleChoiceArray.push(choiceOne);
-        multipleChoiceArray.push(choiceTwo);
-        multipleChoiceArray.push(choiceThree);
+        multipleChoiceArrayNames.push(choiceOne);
+        multipleChoiceArrayNames.push(choiceTwo);
+        multipleChoiceArrayNames.push(choiceThree);
         
-        currentchoiceone = choiceOne;
+        currentChoiceOne = choiceOne;
         console.log("choiceOne " + choiceOne);
-        currentchoicetwo = choiceTwo;
+        currentChoiceTwo = choiceTwo;
         console.log("choiceTwo " + choiceTwo);
-        currentchoicethree = choiceThree;
+        currentChoiceThree = choiceThree;
         console.log("choiceThree " + choiceThree);
-        for (i=0; i< multipleChoiceArray.length-1; i++) {
-            document.getElementById(multipleChoiceArray[i]).style.display = "block";
+        for (i=0; i< multipleChoiceArrayNames.length-1; i++) {
+            document.getElementById(multipleChoiceArrayNames[i]).style.display = "block";
         }
         console.log("random choice finished");
-    };
-
-
-
+    }
     function changeflag() {
-        var flagcode = DisplayCountrycca3.toLowerCase();
+        var flagcode = correctCountryCca3.toLowerCase();
         document.getElementById("Flag_Image").src = "countries-master/countries-master/data/" + flagcode + ".svg";
-    };
-
- answernumberfunc();
+    }
+    answernumberfunc();
     var fourRandomNumbers = [];
     funcFourRanNums();
-    DisplayCountry = countryNames[answerNumber];
-    DisplayCountrycca3 = cca3codes[answerNumber];
-    DisplayCountrycca2 = cca2codes[answerNumber];
-    multipleChoiceArray.push(DisplayCountry);
-    console.log(multipleChoiceArray);
+    correctCountryName = countryNames[answerNumber];
+    correctCountryCca3 = cca3codes[answerNumber];
+    correctCountryCca2 = cca2codes[answerNumber];
+    multipleChoiceArrayNames.push(correctCountryName);
+    console.log(multipleChoiceArrayNames);
     randomChoices();
     changeflag();
     decision();
     changehtml();
-};
-
+}
 // List of Functions Changing the colour of the country
 //Global Variables. The country codes and their original colours.
 var countryfillglob = [];
 var countrystyleglob = [];
 function colorcountry(stylehere) {
-    var countryShapeFill = svgEurope.getElementById(DisplayCountrycca2.toLowerCase());
-    countryfillglob.push(DisplayCountrycca2.toLowerCase());
+    var countryShapeFill = svgEurope.getElementById(correctCountryCca2.toLowerCase());
+    countryfillglob.push(correctCountryCca2.toLowerCase());
 
     var originalstyle = countryShapeFill.getAttribute("style");
     console.log(originalstyle);
     countrystyleglob.push(originalstyle);
     //Need to push this original style and the Id to a separate array.
     countryShapeFill.setAttribute("style", stylehere);
-};
-
-
-
+}
 function decision() {
     console.log("enterdecision");
     var buttons = document.getElementsByClassName("button");
@@ -200,21 +183,21 @@ function decision() {
 
 
         buttons[i].onclick = function () {
-            console.log("Clicked on a button")
-            console.log("Button Count is " + buttonsCount)
+            console.log("Clicked on a button");
+            console.log("Button Count is " + buttonsCount);
 //            console.log(buttons[i]);
             //Make sure no button is displayed.
-            console.log("display country is " + DisplayCountry);
-            document.getElementById(DisplayCountry).style.display = "none";
-            console.log("Set the Button" + DisplayCountry + "to None");
-            document.getElementById(currentchoiceone).style.display = "none";
-            document.getElementById(currentchoicetwo).style.display = "none";
-            document.getElementById(currentchoicethree).style.display = "none";
+            console.log("display country is " + correctCountryName);
+            document.getElementById(correctCountryName).style.display = "none";
+            console.log("Set the Button" + correctCountryName + "to None");
+            document.getElementById(currentChoiceOne).style.display = "none";
+            document.getElementById(currentChoiceTwo).style.display = "none";
+            document.getElementById(currentChoiceThree).style.display = "none";
             answeredCountry = this.id;
             // document.getElementById("CountrySelectBox").innerHTML = answeredCountry;
             console.log(answeredCountry + "   ");
-            console.log(DisplayCountry + "   ");
-            if (DisplayCountry === answeredCountry) {
+            console.log(correctCountryName + "   ");
+            if (correctCountryName === answeredCountry) {
                 // alert("Correct!");
                 score = score + 1;
                 console.log("SCORE IS " + score);
@@ -223,67 +206,55 @@ function decision() {
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameCorrect";
-                newelementdiv.innerHTML = DisplayCountry;
+                newelementdiv.innerHTML = correctCountryName;
 
 
                 document.getElementById("FinishedCountries").appendChild(newelementdiv);
 
-                if (DisplayCountry == "Russia") {
+                if (correctCountryName == "Russia") {
                     kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
                 }
-                ;
-
                 colorcountry("fill:#68C398; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
-                countryNamesAll.push(DisplayCountry);
-                cca2codes.push(DisplayCountrycca2);
-                cca3codes.push(DisplayCountrycca3);
+                countryNamesAll.push(correctCountryName);
+                cca2codes.push(correctCountryCca2);
+                cca3codes.push(correctCountryCca3);
                 endofturn();
             } else {
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameWrong";
-                newelementdiv.innerHTML = DisplayCountry;
+                newelementdiv.innerHTML = correctCountryName;
                 document.getElementById("FinishedCountries").appendChild(newelementdiv);
 
 
-                if (DisplayCountry == "Russia") {
+                if (correctCountryName == "Russia") {
                     kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
                 }
-                ;
-
-
                 colorcountry("fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
-                countryNamesAll.push(DisplayCountry);
-                cca2codes.push(DisplayCountrycca2);
-                cca3codes.push(DisplayCountrycca3);
+                countryNamesAll.push(correctCountryName);
+                cca2codes.push(correctCountryCca2);
+                cca3codes.push(correctCountryCca3);
                 endofturn();
             }
         }
 
     }
     console.log("exit onclick function")
-};
-
-
+}
 //changing all of the HTML elements. Essentialy now just changing the score.
 function changehtml() {
     document.getElementById("ScoreBox").innerHTML = score + "/" + countriesOnMap.length;
-};
-
-
+}
 //At the end of each turn.
 function endofturn() {
     turnNumber = turnNumber + 1;
     if (turnNumber > 42) {
         endofgame()
     }
-    ;
-    console.log("NUMBER OF COUNTRIES LEFT " + countryNames.length)
-    multipleChoiceArray = [];
+    console.log("NUMBER OF COUNTRIES LEFT " + countryNames.length);
+    multipleChoiceArrayNames = [];
     choices();
-};
-
-
+}
 //Reset all countries colours Including Kalingrad.
 function resetallcolours() {
 
@@ -296,34 +267,31 @@ function resetallcolours() {
         if (resetCountry !== null) {
             resetCountry.setAttribute("style", countrystyleglob[i])
         }
-        ;
     }
-};
-
+}
 //Resets the Box at the bottom of the screen.
 function resetansweredbox() {
     console.log("RESETANWEREBOX");
-    var wrongcountries =
+    var wrongCountries =
         document.getElementsByClassName("finishednameWrong");
 
-    for (var i = 0; i < wrongcountries.length; i += 1) {
-        wrongcountries[i].style.display = "none";
+    for (var i = 0; i < wrongCountries.length; i += 1) {
+        wrongCountries[i].style.display = "none";
     }
-    console.log(wrongcountries);
+    console.log(wrongCountries);
 
     var correctcountries = document.getElementsByClassName("finishednameCorrect");
     console.log("correce" + correctcountries);
     for (var i = 0; i < correctcountries.length; i += 1) {
         correctcountries[i].style.display = "none";
     }
-    console.log(wrongcountries);
-};
-
+    console.log(wrongCountries);
+}
 function resetChoices() {
-    DisplayCountry = "";
-    currentchoiceone= "";
-    currentchoicetwo= "";
-    currentchoicethree= "";
+    correctCountryName = "";
+    currentChoiceOne= "";
+    currentChoiceTwo= "";
+    currentChoiceThree= "";
 }
 
 
@@ -332,7 +300,7 @@ function endofgame() {
     {
         alert("End of game! You scored " + score + " out of " + turnNumber);
         resetansweredbox();
-        alreadychosen = [];
+        previousChoiceArray = [];
         resetallcolours();
         turnNumber = 0;
         score = 0;
@@ -340,27 +308,25 @@ function endofgame() {
         changehtml();
 
     }
-};
-
-
+}
 //This is the start button which is clicked.
 function startbutton() {
     console.log("start button function clicked");
-    console.log("DisplayCOuntry is " + DisplayCountry);
-    console.log("DisplayCOuntry is " + currentchoiceone);
-    console.log("DisplayCOuntry is " + currentchoicetwo);
-    console.log(document.getElementById(currentchoicethree));
+    console.log("DisplayCOuntry is " + correctCountryName);
+    console.log("DisplayCOuntry is " + currentChoiceOne);
+    console.log("DisplayCOuntry is " + currentChoiceTwo);
+    console.log(document.getElementById(currentChoiceThree));
 
-    if (document.getElementById(DisplayCountry) !== null && document.getElementById(currentchoiceone) !== null) {
+    if (document.getElementById(correctCountryName) !== null && document.getElementById(currentChoiceOne) !== null) {
         //If there are buttons, set them to no display.
-        console.log("setting to none")
-        console.log("multichoicearr is " + multipleChoiceArray);
-        for (i=0; i<multipleChoiceArray.length;i++){
-            document.getElementById(multipleChoiceArray[i]).style.display = "none";
+        console.log("setting to none");
+        console.log("multichoicearr is " + multipleChoiceArrayNames);
+        for (i=0; i<multipleChoiceArrayNames.length; i++){
+            document.getElementById(multipleChoiceArrayNames[i]).style.display = "none";
         }
 
 
-    };
+    }
     document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesOnMap.length;
     document.getElementById("rulebox").style.display = "none";
     document.getElementById("absolutebox").style.display = "none";
@@ -370,14 +336,20 @@ function startbutton() {
 
 
     resetansweredbox();
-    alreadychosen = [];
+    previousChoiceArray = [];
     resetallcolours();
     turnNumber = 0;
     score = 0;
     resetChoices();
-    multipleChoiceArray=[];
+    multipleChoiceArrayNames=[];
     choices();
-};
+}
+
+
+
+
+
+
 
 //Descibes JavaScript code for pop-up box
 var modal = document.getElementById('myModal');
@@ -385,15 +357,15 @@ var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 btn.onclick = function () {
     modal.style.display = "block";
-}
+};
 span.onclick = function () {
     modal.style.display = "none";
-}
+};
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
+};
 
 function showbar() {
     document.getElementById("mybar").style.display = "block";

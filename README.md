@@ -21,3 +21,6 @@ Then go on:
 - [X] Import to Github.
 - [ ] Right/ wrong appears/ more flashy.
 - [X] Github 	
+//TODO: Change the number of countries which displays.
+//TODO: Change the map which could be displayed.
+//TODO: Also have population etc, not just the map.
