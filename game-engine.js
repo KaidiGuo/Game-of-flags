@@ -1,5 +1,9 @@
+// Global Parameters
+var numberOfTurns = 42;
+var numberOfChoices = 3;
+
 // List of Global Variables ---------------------------------------------------
-var answerNumber = 0;
+var correctAnswerNumber = 0;
 var correctCountryName, correctCountryCca3,correctCountryCca2;
 
 
@@ -10,6 +14,7 @@ var multipleChoiceArrayNames = [];
 
 var answeredCountry = "";
 var score = 0; //Number of correct answers
+
 var turnNumber = -1; // The turn number of the round.
 
 
@@ -25,6 +30,7 @@ var cca2codes = [];
 var cca3codes = [];
 var countryNames = [];
 var countryNamesAll = [];
+//TODO: Make these load automatically based on the elements on the map.
 var countriesOnMap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk", "ru", "sm", "tr", "ua",];
 
 
@@ -41,6 +47,8 @@ function loadCountries() {
     svgEurope = document.getElementById("europe-svg").contentDocument;
     kalingrad = svgEurope.getElementById("russiak");
     kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:20; stroke-miterlimit:10");
+    var childNodeArray = svgEurope.childNodes;
+    console.log(childNodeArray);
 
     d3.json("countries.txt", function (data) {
 
@@ -78,30 +86,25 @@ function loadCountries() {
 
 }
 
-//TODO: number of turns, number of choices,
 function choices() {
 // Correct Answer
-    answerNumber = Math.ceil(Math.random() * countriesOnMap.length - 1);
+    correctAnswerNumber = Math.ceil(Math.random() * countriesOnMap.length - 1);
 
     function answernumberfunc() {
-        if (turnNumber > 42) {
-            endofgame();
-        }
-        if (previousChoiceArray.indexOf(answerNumber) >= 0) {
+        if (previousChoiceArray.indexOf(correctAnswerNumber) >= 0) {
             choices();
         }
         else {
-            previousChoiceArray.push(answerNumber);
+            previousChoiceArray.push(correctAnswerNumber);
         }
     }
-//Creating random answers
-    //TODO: number of random numbers
+
     function randomNumbersFunction(countOfNumbers) {
 
         var arr = [];
         while (arr.length < countOfNumbers) {
             var randomnumber = Math.ceil(Math.random() * countriesOnMap.length - 1);
-            if (randomnumber == answerNumber) {
+            if (randomnumber == correctAnswerNumber) {
                 randomnumber = Math.ceil(Math.random() * countriesOnMap.length - 1)
             }
             var found = false;
@@ -122,6 +125,7 @@ function choices() {
          for (i=0; i< randomNumbersArray.length; i++) {
              multipleChoiceArrayNames.push(countryNames[randomNumbersArray[i]]);
          }
+        multipleChoiceArrayNames.push(countryNames[correctAnswerNumber]);
         console.log(multipleChoiceArrayNames);
         for (i=0; i< multipleChoiceArrayNames.length; i++) {
             console.log(multipleChoiceArrayNames[i]);
@@ -138,12 +142,12 @@ function choices() {
 
     answernumberfunc();
     var randomNumbersArray = [];
-    randomNumbersFunction(3);
+    randomNumbersFunction(numberOfChoices);
     randomChoices();
-    console.log(answerNumber);
-    correctCountryName = countryNames[answerNumber];
-    correctCountryCca3 = cca3codes[answerNumber];
-    correctCountryCca2 = cca2codes[answerNumber];
+    console.log(correctAnswerNumber);
+    correctCountryName = countryNames[correctAnswerNumber];
+    correctCountryCca3 = cca3codes[correctAnswerNumber];
+    correctCountryCca2 = cca2codes[correctAnswerNumber];
     changeFlag();
     decision();
     changehtml();
@@ -240,7 +244,7 @@ function changehtml() {
 //At the end of each turn.
 function endofturn() {
     turnNumber = turnNumber + 1;
-    if (turnNumber > 42) {
+    if (turnNumber > numberOfTurns) {
         endofgame()
     }
     console.log("NUMBER OF COUNTRIES LEFT " + countryNames.length);
@@ -262,7 +266,7 @@ function resetallcolours() {
     }
 }
 //Resets the Box at the bottom of the screen.
-function resetansweredbox() {
+function resetAnsweredBox() {
     console.log("RESETANWEREBOX");
     var wrongCountries =
         document.getElementsByClassName("finishednameWrong");
@@ -288,7 +292,7 @@ function resetChoices() {
 //At the end of the game...
 function endofgame() {
         alert("End of game! You scored " + score + " out of " + turnNumber);
-        resetansweredbox();
+        resetAnsweredBox();
         previousChoiceArray = [];
         resetallcolours();
         turnNumber = 0;
@@ -321,7 +325,7 @@ function startbutton() {
     document.getElementById("start1").innerHTML = "Restart";
 
 
-    resetansweredbox();
+    resetAnsweredBox();
     previousChoiceArray = [];
     resetallcolours();
     turnNumber = 0;
