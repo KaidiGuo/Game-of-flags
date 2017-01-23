@@ -290,7 +290,8 @@ function resetallcolours() {
     kalingrad.setAttribute("style", "fill:#F6DD78; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
 
     for (var i = 0; i <= countryfillglob.length; i += 1) {
-        var resetCountry = document.getElementById(countryfillglob[i]);
+        console.log(countryfillglob[i]);
+        var resetCountry = svgEurope.getElementById(countryfillglob[i]);
         console.log("RESETTING Country");
         if (resetCountry !== null) {
             resetCountry.setAttribute("style", countrystyleglob[i])
