@@ -353,10 +353,11 @@ function startbutton() {
     if (document.getElementById(DisplayCountry) !== null && document.getElementById(currentchoiceone) !== null) {
         //If there are buttons, set them to no display.
         console.log("setting to none")
-        document.getElementById(DisplayCountry).style.display = "none";
-        document.getElementById(currentchoiceone).style.display = "none";
-        document.getElementById(currentchoicetwo).style.display = "none";
-        document.getElementById(currentchoicethree).style.display = "none";
+        console.log("multichoicearr is " + multipleChoiceArray);
+        for (i=0; i<multipleChoiceArray.length;i++){
+            document.getElementById(multipleChoiceArray[i]).style.display = "none";
+        }
+
 
     };
     document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesOnMap.length;
