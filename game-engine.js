@@ -38,7 +38,7 @@ var countriesOnMap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz"
 
 window.onload = function() {
 loadCountries();
-}
+};
 
 
 //First, this loads the countries. And the country buttons
@@ -175,26 +175,17 @@ function choices() {
 var countryfillglob = [];
 var countrystyleglob = [];
 function colorcountry(stylehere) {
-    var countryShapFill = document.getElementById(DisplayCountrycca2.toLowerCase());
+    var countryShapeFill = svgEurope.getElementById(DisplayCountrycca2.toLowerCase());
     countryfillglob.push(DisplayCountrycca2.toLowerCase());
 
-    var originalstyle = countryShapFill.getAttribute("style");
+    var originalstyle = countryShapeFill.getAttribute("style");
     console.log(originalstyle);
     countrystyleglob.push(originalstyle);
     //Need to push this original style and the Id to a separate array.
-    countryShapFill.setAttribute("style", stylehere);
+    countryShapeFill.setAttribute("style", stylehere);
 };
 
-function nobuttons() {
-    var buttons = document.getElementsByClassName("button");
-    var buttonsCount = buttons.length;
 
-    for (var i = 0; i < buttonsCount; i += 1) {
-        if (buttons[i].style.display = "block") {
-            buttons[i].style.display = "none"
-        }
-    }
-};
 
 function decision() {
     console.log("enterdecision");
@@ -299,13 +290,10 @@ function resetallcolours() {
     kalingrad.setAttribute("style", "fill:#F6DD78; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
 
     for (var i = 0; i <= countryfillglob.length; i += 1) {
-//console.log(countryfillglob)
-        var resetcountry = document.getElementById(countryfillglob[i]);
-//    console.log(resetcountry);
+        var resetCountry = document.getElementById(countryfillglob[i]);
         console.log("RESETTING Country");
-//     console.log(resetcountry);
-        if (resetcountry !== null) {
-            resetcountry.setAttribute("style", countrystyleglob[i])
+        if (resetCountry !== null) {
+            resetCountry.setAttribute("style", countrystyleglob[i])
         }
         ;
     }
@@ -315,20 +303,27 @@ function resetallcolours() {
 function resetansweredbox() {
     console.log("RESETANWEREBOX");
     var wrongcountries =
-        svgEurope.getElementsByClassName("finishednameWrong");
+        document.getElementsByClassName("finishednameWrong");
 
     for (var i = 0; i < wrongcountries.length; i += 1) {
         wrongcountries[i].style.display = "none";
     }
     console.log(wrongcountries);
 
-    var correctcountries = svgEurope.getElementsByClassName("finishednameCorrect");
+    var correctcountries = document.getElementsByClassName("finishednameCorrect");
     console.log("correce" + correctcountries);
     for (var i = 0; i < correctcountries.length; i += 1) {
         correctcountries[i].style.display = "none";
     }
     console.log(wrongcountries);
 };
+
+function resetChoices() {
+    DisplayCountry = "";
+    currentchoiceone= "";
+    currentchoicetwo= "";
+    currentchoicethree= "";
+}
 
 
 //At the end of the game.What happens?
@@ -349,16 +344,21 @@ function endofgame() {
 
 //This is the start button which is clicked.
 function startbutton() {
+    console.log("start button function clicked");
+    console.log("DisplayCOuntry is " + DisplayCountry);
+    console.log("DisplayCOuntry is " + currentchoiceone);
+    console.log("DisplayCOuntry is " + currentchoicetwo);
+    console.log(document.getElementById(currentchoicethree));
 
-    if (svgEurope.getElementById(DisplayCountry) !== null && svgEurope.getElementById(currentchoiceone) !== null && svgEurope.getElementById(currentchoicetwo) !== null && svgEurope.getElementById(currentchoicethree) !== null) {
+    if (document.getElementById(DisplayCountry) !== null && document.getElementById(currentchoiceone) !== null) {
         //If there are buttons, set them to no display.
-        svgEurope.getElementById(DisplayCountry).style.display = "none";
-        svgEurope.getElementById(currentchoiceone).style.display = "none";
-        svgEurope.getElementById(currentchoicetwo).style.display = "none";
-        svgEurope.getElementById(currentchoicethree).style.display = "none";
+        console.log("setting to none")
+        document.getElementById(DisplayCountry).style.display = "none";
+        document.getElementById(currentchoiceone).style.display = "none";
+        document.getElementById(currentchoicetwo).style.display = "none";
+        document.getElementById(currentchoicethree).style.display = "none";
 
-    }
-    ;
+    };
     document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesOnMap.length;
     document.getElementById("rulebox").style.display = "none";
     document.getElementById("absolutebox").style.display = "none";
@@ -372,19 +372,10 @@ function startbutton() {
     resetallcolours();
     turnNumber = 0;
     score = 0;
+    resetChoices();
+    multipleChoiceArray=[];
     choices();
 };
-//This is the STOP GAME button
-function stopgamebutton() {
-    console.log("RESTART BUTTON");
-    document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesOnMap.length;
-    document.getElementById("Flag_Image").src = "";
-    svgEurope.getElementById(DisplayCountry).style.display = "none";
-    svgEurope.getElementById(currentchoiceone).style.display = "none";
-    svgEurope.getElementById(currentchoicetwo).style.display = "none";
-    svgEurope.getElementById(currentchoicethree).style.display = "none";
-};
-
 
 //Descibes JavaScript code for pop-up box
 var modal = document.getElementById('myModal');
