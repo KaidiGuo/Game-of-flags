@@ -18,6 +18,6 @@ Then go on:
 - [ ] Remove Google Maps
 - [ ] Remove Images.
 - [ ] Remove Names
-- [ ] Import to Github.
+- [X] Import to Github.
 - [ ] Right/ wrong appears/ more flashy.
-- [ ] Github 	
+- [X] Github 	

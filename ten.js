@@ -1,4 +1,4 @@
-//Arrays. This is where the country data should go.
+
 var cca2codes = [];
 var cca3codes = [];
 var countrynames = [];
@@ -42,18 +42,6 @@ function loadcountries() {
             }
             return false;
         }
-
-        //Uses the cca3 code. Need to get an array of the cca3 code.
-
-
-        //Then return the cca3 code of the random country
-
-        //Change the ccas3 code to lower case.
-
-        //Change the svg element to reflect the country.
-
-        //Once it has loaded
-        // endofturn();
     })
 
 };
@@ -343,9 +331,6 @@ console.log("enterforloop");
 };
 
 
-
-
-
 //changing all of the HTML elements. Essentialy now just changing the score.
 function changehtml() {
     document.getElementById("ScoreBox").innerHTML = score + "/" +countriesonmap.length;
@@ -487,8 +472,3 @@ var Mapview = 1;
    }
 
  }
-
-
-
-
-
