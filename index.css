@@ -241,18 +241,17 @@ body{
   margin-left: 2%;
   width: 0px;
   height: 0px;
-  border-top: 50px solid red;
-  border-left:30px solid red;
-  border-right:30px solid red;
-  border-bottom:30px solid transparent;
-  border-bottom:30px solid transparent;
+  border-top: 70px solid red;
+  border-left:40px solid red;
+  border-right:40px solid red;
+  border-bottom:40px solid transparent;
   top: 0px;
   right: 8%;
 }
 .box2 p{
   position: absolute;
   color: white;
-  top: -50px;
+  top: -70px;
   left: -20px;
 }
 
@@ -426,6 +425,7 @@ li {
 @media (-webkit-min-device-pixel-ratio:2),(min-resolution: 190dpi) {
   body{
     text-align: center;
+    font-size: 200%;
   }
   .above{
     float: left;
@@ -452,8 +452,6 @@ li {
     }
     #map {
     display: none;
-
-
     }
     .logo{
       margin-top: 5%;
@@ -519,7 +517,7 @@ li {
     }
     .sbutton {
       background-color: rgb(64, 81, 132);
-      font-size: 120%;
+      /*font-size: 150%;*/
       margin-left: auto;
       margin-right: auto;
       margin-top: 5%;
@@ -532,8 +530,14 @@ li {
 
     .infoline {
       float: left;
-      margin-top: 4%;
+      margin-top: 14%;
+      padding-top: 14%;
+
       /*border: 1px solid red;*/
+    }
+    .infoline p{
+      font-size: 80%;
+
     }
     #author_information {
         font-size:50%;
@@ -552,6 +556,20 @@ li {
         width: 80px;
         margin: 5px;
         align-items: center;
+        }
+        .button{
+          background-color: rgb(64, 81, 132);
+          font-size: 150%;
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 5%;
+          padding: 10px;
+          left: 0px;
+          color: rgb(255, 255, 255);
+          text-decoration: none;
+          text-align:center;
+          width: 70%;
+
         }
 
 
