@@ -79,7 +79,7 @@ font-family:  'Gudea', sans-serif;
   color:rgb(64, 81, 132);
 }
 .flag{
-
+    position: relative;
 }
 #Flag_Image{
   display: none;
@@ -89,6 +89,31 @@ font-family:  'Gudea', sans-serif;
   margin-right: auto;
   height: 100px;
 }
+
+.right_wrong_box{
+    display: block;
+    position: absolute;
+    top: 0px;
+    font-size: 32px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    opacity: 0;
+}
+
+.animate_box{
+    animation-name: show_box;
+    animation-duration: 0.5s;
+}
+
+@keyframes show_box {
+    0%   {background-color: red; opacity: 0}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue; opacity: 1}
+    100% {background-color: green; opacity: 0}
+}
+
+
 .buttons{
   position: relative;
   /*background-color: green;*/

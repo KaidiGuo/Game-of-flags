@@ -229,6 +229,7 @@ function decision() {
 
 
         buttons[i].onclick = function () {
+
             console.log("Clicked on a button");
             console.log("Button Count is " + buttonsCount);
 //            console.log(buttons[i]);
@@ -245,19 +246,16 @@ function decision() {
             console.log(answeredCountry + "   ");
             console.log(correctCountryName + "   ");
             if (correctCountryName === answeredCountry) {
-                // alert("Correct!");
+                document.getElementById("correct_box").classList.add('animate_box');
                 score = score + 1;
                 console.log("SCORE IS " + score);
-
                 document.getElementById("ScoreBox").innerHTML = score + "/" + countriesToTest.length;
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameCorrect";
                 newelementdiv.innerHTML = correctCountryName;
-
-
                 document.getElementById("FinishedCountries").appendChild(newelementdiv);
-
+                
                 if (correctCountryName == "Russia") {
                     kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
                 }
@@ -267,13 +265,13 @@ function decision() {
                 cca3codes.push(correctCountryCca3);
                 endofturn();
             } else {
+                document.getElementById("correct_box").classList.add('animate_box');
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameWrong";
                 newelementdiv.innerHTML = correctCountryName;
                 document.getElementById("FinishedCountries").appendChild(newelementdiv);
-
-
+                
                 if (correctCountryName == "Russia") {
                     kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
                 }
@@ -294,6 +292,7 @@ function changehtml() {
 }
 //At the end of each turn.
 function endofturn() {
+    //document.getElementById("correct_box").classList.toggle('animate_box');
     turnNumber = turnNumber + 1;
     if (turnNumber >= numberOfTurns) {
         endofgame()
@@ -386,7 +385,7 @@ function startbutton() {
 }
 
 
-//Descibes JavaScript code for pop-up box
+//Describes JavaScript code for pop-up box
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
