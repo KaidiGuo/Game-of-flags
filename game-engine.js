@@ -1,16 +1,18 @@
-//TODO: Make these load automatically based on the elements on the map.
-var countriesOnMap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk", "ru", "sm", "tr", "ua",];
+var EUCountries = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk", "ru", "sm", "tr", "ua",];
 var countriesOnMapProgrammed= [];
-loadCountriesOnMap();
+loadAllCountriesOnMap();
+var threeCountries = ["ba","be","bg"]
+
+var countriesToTest = countriesOnMapProgrammed;
 
 // See differences
 Array.prototype.diff = function(a) {
     return this.filter(function(i) {return a.indexOf(i) < 0;});
 };
-console.log(countriesOnMap.diff(countriesOnMapProgrammed));
+console.log(EUCountries.diff(countriesOnMapProgrammed));
 
 // Global Parameters
-var numberOfTurns = countriesOnMap.length;
+var numberOfTurns = 0;
 var numberOfChoices = 3;
 
 // List of Global Variables ---------------------------------------------------
@@ -49,7 +51,7 @@ window.onload = function() {
     loadCountries();
 };
 
-   function loadCountriesOnMap() {
+   function loadAllCountriesOnMap() {
     var a = document.getElementById("europe-svg");
      a.addEventListener("load",function(){
                 // get the inner DOM of alpha.svg
@@ -61,9 +63,15 @@ window.onload = function() {
                     id = allELements[i].id;
                     countriesOnMapProgrammed.push(id);
                 };
+         //Remove russiak
+         var removeThis = "russiak";
+         var index = countriesOnMapProgrammed.indexOf(removeThis);
+         if (index > -1) {
+        countriesOnMapProgrammed.splice(index, 1);
+        }
          console.log(countriesOnMapProgrammed);
             }, false);
-}
+    }
 
 
 //First, this loads the countries. And the country buttons
@@ -75,12 +83,14 @@ function loadCountries() {
     kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:20; stroke-miterlimit:10");
     var childNodeArray = svgEurope.childNodes;
     console.log(childNodeArray);
+    numberOfTurns=countriesToTest.length;
+    console.log("No Turns is " + numberOfTurns);
 
     d3.json("countries.txt", function (data) {
 
         for (var i = 0; i < data.length; i++) {
             //Selecting only European Countries and loading them.
-            if (contains(countriesOnMap, data[i].cca2.toLowerCase()) === true) {
+            if (contains(countriesToTest, data[i].cca2.toLowerCase()) === true) {
                 countryNames.push(data[i].name.common);
                 countryNamesAll.push(data[i].name.common);
                 cca3codes.push(data[i].cca3);
@@ -113,7 +123,7 @@ function loadCountries() {
 
 function choices() {
 // Correct Answer
-    correctAnswerNumber = Math.ceil(Math.random() * countriesOnMap.length - 1);
+    correctAnswerNumber = Math.ceil(Math.random() * countriesToTest.length - 1);
 
     function answernumberfunc() {
         if (previousChoiceArray.indexOf(correctAnswerNumber) >= 0) {
@@ -128,9 +138,9 @@ function choices() {
 
         var arr = [];
         while (arr.length < countOfNumbers) {
-            var randomnumber = Math.ceil(Math.random() * countriesOnMap.length - 1);
+            var randomnumber = Math.ceil(Math.random() * countriesToTest.length - 1);
             if (randomnumber == correctAnswerNumber) {
-                randomnumber = Math.ceil(Math.random() * countriesOnMap.length - 1)
+                randomnumber = Math.ceil(Math.random() * countriesToTest.length - 1)
             }
             var found = false;
             for (var i = 0; i < arr.length; i++) {
@@ -146,11 +156,27 @@ function choices() {
 
     // TODO: number of random choices (already described so just use a for loop from the previous one.
     function randomChoices() {
-        console.log(randomNumbersArray);
-         for (i=0; i< randomNumbersArray.length; i++) {
-             multipleChoiceArrayNames.push(countryNames[randomNumbersArray[i]]);
+        function sortNumber(a,b) {
+            return a - b;
+            }
+        allNumbers = [];
+        allNumbers.push(correctAnswerNumber);
+        for (i=0; i<randomNumbersArray.length; i++){
+            allNumbers.push(randomNumbersArray[i]);
+        }
+        allNumbersSorted= allNumbers.sort(sortNumber);
+
+        console.log("allnumber is " + allNumbersSorted);
+
+         for (i=0; i< allNumbersSorted.length; i++) {
+             multipleChoiceArrayNames.push(countryNames[allNumbersSorted[i]]);
          }
-        multipleChoiceArrayNames.push(countryNames[correctAnswerNumber]);
+        //multipleChoiceArrayNames.push(countryNames[correctAnswerNumber]);
+        console.log("correct answer number is" + correctAnswerNumber);
+        console.log("correct answer number code " + cca2codes[correctAnswerNumber]);
+        console.log("TEST WITH 0" + countryNames[0]);
+        console.log("TEST WITH 60" + countryNames[59]);
+        //Is it only for saudi Arabia?
         console.log(multipleChoiceArrayNames);
         for (i=0; i< multipleChoiceArrayNames.length; i++) {
             console.log(multipleChoiceArrayNames[i]);
@@ -223,7 +249,7 @@ function decision() {
                 score = score + 1;
                 console.log("SCORE IS " + score);
 
-                document.getElementById("ScoreBox").innerHTML = score + "/" + countriesOnMap.length;
+                document.getElementById("ScoreBox").innerHTML = score + "/" + countriesToTest.length;
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameCorrect";
@@ -264,12 +290,12 @@ function decision() {
 }
 //changing all of the HTML elements. Essentialy now just changing the score.
 function changehtml() {
-    document.getElementById("ScoreBox").innerHTML = score + "/" + countriesOnMap.length;
+    document.getElementById("ScoreBox").innerHTML = score + "/" + countriesToTest.length;
 }
 //At the end of each turn.
 function endofturn() {
     turnNumber = turnNumber + 1;
-    if (turnNumber > numberOfTurns) {
+    if (turnNumber >= numberOfTurns) {
         endofgame()
     }
     console.log("NUMBER OF COUNTRIES LEFT " + countryNames.length);
@@ -342,11 +368,10 @@ function startbutton() {
         }
 
     }
-    document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesOnMap.length;
+    document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesToTest.length;
     document.getElementById("rulebox").style.display = "none";
     document.getElementById("absolutebox").style.display = "none";
     document.getElementById("Flag_Image").style.display = "block";
-
     document.getElementById("start1").innerHTML = "Restart";
 
 
