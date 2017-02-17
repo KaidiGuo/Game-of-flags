@@ -1,5 +1,10 @@
+//TODO: Make these load automatically based on the elements on the map.
+var countriesOnMap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk", "ru", "sm", "tr", "ua",];
+var countriesOnMapProgrammed= [];
+loadCountriesOnMap();
+
 // Global Parameters
-var numberOfTurns = 42;
+var numberOfTurns = countriesOnMap.length;
 var numberOfChoices = 3;
 
 // List of Global Variables ---------------------------------------------------
@@ -30,14 +35,29 @@ var cca2codes = [];
 var cca3codes = [];
 var countryNames = [];
 var countryNamesAll = [];
-//TODO: Make these load automatically based on the elements on the map.
-var countriesOnMap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk", "ru", "sm", "tr", "ua",];
+
 
 
 
 window.onload = function() {
-loadCountries();
+    loadCountries();
 };
+
+   function loadCountriesOnMap() {
+    var a = document.getElementById("europe-svg");
+     a.addEventListener("load",function(){
+                // get the inner DOM of alpha.svg
+                var svgDoc = a.contentDocument;
+                var getRectanglge= svgDoc.getElementsByTagName("path");
+                // get the inner element by id
+                var allELements=svgDoc.getElementsByTagName("path");
+                for (var i=0; i<allELements.length; i++) {
+                    id = allELements[i].id;
+                    countriesOnMapProgrammed.push(id);
+                };
+         console.log(countriesOnMapProgrammed);
+            }, false);
+}
 
 
 //First, this loads the countries. And the country buttons
@@ -83,7 +103,6 @@ function loadCountries() {
             return false;
         }
     })
-
 }
 
 function choices() {
