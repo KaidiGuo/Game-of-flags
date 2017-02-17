@@ -3,6 +3,12 @@ var countriesOnMap = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz"
 var countriesOnMapProgrammed= [];
 loadCountriesOnMap();
 
+// See differences
+Array.prototype.diff = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
+console.log(countriesOnMap.diff(countriesOnMapProgrammed));
+
 // Global Parameters
 var numberOfTurns = countriesOnMap.length;
 var numberOfChoices = 3;
