@@ -352,7 +352,7 @@ window.onclick = function (event) {
     }
 };
 
-function showbar() {
+function showBar() {
     document.getElementById("mybar").style.display = "block";
     document.getElementById("Continue").style.display = "block";
     document.getElementById("sstart").style.display = "none";
