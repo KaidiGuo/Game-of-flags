@@ -265,13 +265,15 @@ function decision() {
                 cca3codes.push(correctCountryCca3);
                 endofturn();
             } else {
+
+                document.getElementById("correct_box").classList.remove('animate_box');
                 document.getElementById("correct_box").classList.add('animate_box');
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameWrong";
                 newelementdiv.innerHTML = correctCountryName;
                 document.getElementById("FinishedCountries").appendChild(newelementdiv);
-                
+
                 if (correctCountryName == "Russia") {
                     kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
                 }
