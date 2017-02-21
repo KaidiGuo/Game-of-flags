@@ -82,14 +82,12 @@ function loadCountries() {
     kalingrad = svgEurope.getElementById("russiak");
     kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:20; stroke-miterlimit:10");
     var childNodeArray = svgEurope.childNodes;
-    console.log(childNodeArray);
     numberOfTurns=countriesToTest.length;
-    console.log("No Turns is " + numberOfTurns);
 
     d3.json("countries.txt", function (data) {
 
         for (var i = 0; i < data.length; i++) {
-            //Selecting only European Countries and loading them.
+
             if (contains(countriesToTest, data[i].cca2.toLowerCase()) === true) {
                 countryNames.push(data[i].name.common);
                 countryNamesAll.push(data[i].name.common);
@@ -97,17 +95,23 @@ function loadCountries() {
                 cca2codes.push(data[i].cca2);
             }
         }
-
+// TODO: Change so that only the text will change. No need to add new divs each time.
 //creating buttons of countryNames. These are now divs.
-        for (var i = 0; i < countryNames.length; i++) {
+     function addButtons(arrayName) {
+
+          for (var i = 0; i < arrayName.length; i++) {
             var btn = document.createElement("div");
-            btn.id = countryNames[i];
+            btn.id = arrayName[i];
             btn.className = "countrybutton";
-            btn.innerHTML = countryNames[i];
+            btn.innerHTML = arrayName[i];
             btn.className = "button";
             btn.style.display = "none";
             document.getElementById("buttonsdiv").appendChild(btn);
         }
+     }
+
+        addButtons(countryNamesAll);
+
 
 
         // If it contains an array.
@@ -123,7 +127,7 @@ function loadCountries() {
 }
 
 function choices() {
-// Correct Answer
+
     correctAnswerNumber = Math.ceil(Math.random() * countriesToTest.length - 1);
 
     function answernumberfunc() {
@@ -155,7 +159,6 @@ function choices() {
         randomNumbersArray = arr;
     }
 
-    // TODO: number of random choices (already described so just use a for loop from the previous one.
     function randomChoices() {
         function sortNumber(a,b) {
             return a - b;
@@ -167,23 +170,14 @@ function choices() {
         }
         allNumbersSorted= allNumbers.sort(sortNumber);
 
-        console.log("allnumber is " + allNumbersSorted);
-
          for (i=0; i< allNumbersSorted.length; i++) {
              multipleChoiceArrayNames.push(countryNames[allNumbersSorted[i]]);
          }
-        //multipleChoiceArrayNames.push(countryNames[correctAnswerNumber]);
-        console.log("correct answer number is" + correctAnswerNumber);
-        console.log("correct answer number code " + cca2codes[correctAnswerNumber]);
-        console.log("TEST WITH 0" + countryNames[0]);
-        console.log("TEST WITH 60" + countryNames[59]);
-        //Is it only for saudi Arabia?
-        console.log(multipleChoiceArrayNames);
+
         for (i=0; i< multipleChoiceArrayNames.length; i++) {
             console.log(multipleChoiceArrayNames[i]);
             document.getElementById(multipleChoiceArrayNames[i]).style.display = "block";
         }
-        console.log("random choice finished");
     }
 
 
@@ -208,45 +202,31 @@ function choices() {
 // List of Functions Changing the colour of the country
 //Global Variables. The country codes and their original colours.
 var countryfillglob = [];
-var countrystyleglob = [];
+var originalCountryStyles = [];
 function colorcountry(stylehere) {
     var countryShapeFill = svgEurope.getElementById(correctCountryCca2.toLowerCase());
     countryfillglob.push(correctCountryCca2.toLowerCase());
-
-    var originalstyle = countryShapeFill.getAttribute("style");
-    console.log(originalstyle);
-    countrystyleglob.push(originalstyle);
-    //Need to push this original style and the Id to a separate array.
+    originalCountryStyles.push(countryShapeFill.getAttribute("style"));
     countryShapeFill.setAttribute("style", stylehere);
 }
 function decision() {
+
     var buttons = document.getElementsByClassName("button");
     var buttonsCount = buttons.length;
-    console.log(buttons);
-    console.log("length of buttons is" + buttonsCount);
-
 
     for (var i = 0; i < buttons.length + 1; i += 1) {
-        console.log("enterforloop");
+
 
 
         buttons[i].onclick = function () {
 
-            console.log("Clicked on a button");
-            console.log("Button Count is " + buttonsCount);
-//            console.log(buttons[i]);
-            //Make sure no button is displayed.
-            console.log("display country is " + correctCountryName);
             document.getElementById(correctCountryName).style.display = "none";
-            console.log("Set the Button" + correctCountryName + "to None");
 
             for (i=0; i< multipleChoiceArrayNames.length; i++) {
             document.getElementById(multipleChoiceArrayNames[i]).style.display = "none";
         }
             answeredCountry = this.id;
             // document.getElementById("CountrySelectBox").innerHTML = answeredCountry;
-            console.log(answeredCountry + "   ");
-            console.log(correctCountryName + "   ");
             if (correctCountryName === answeredCountry) {
                 var elm = document.getElementById("correct_box")
                 var newone = elm.cloneNode(true);
@@ -321,7 +301,7 @@ function resetallcolours() {
         var resetCountry = svgEurope.getElementById(countryfillglob[i]);
         console.log("RESETTING Country");
         if (resetCountry !== null) {
-            resetCountry.setAttribute("style", countrystyleglob[i])
+            resetCountry.setAttribute("style", originalCountryStyles[i])
         }
     }
 }
