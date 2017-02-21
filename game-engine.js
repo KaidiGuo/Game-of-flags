@@ -96,24 +96,6 @@ function loadCountries() {
             }
         }
 // TODO: Change so that only the text will change. No need to add new divs each time.
-//creating buttons of countryNames. These are now divs.
-     function addButtons(arrayName) {
-
-          for (var i = 0; i < arrayName.length; i++) {
-            var btn = document.createElement("div");
-            btn.id = arrayName[i];
-            btn.className = "countrybutton";
-            btn.innerHTML = arrayName[i];
-            btn.className = "button";
-            btn.style.display = "none";
-            document.getElementById("buttonsdiv").appendChild(btn);
-        }
-     }
-
-        addButtons(countryNamesAll);
-
-
-
         // If it contains an array.
         function contains(a, obj) {
             for (var i = 0; i < a.length; i++) {
@@ -132,6 +114,7 @@ function choices() {
 
     function answernumberfunc() {
         if (previousChoiceArray.indexOf(correctAnswerNumber) >= 0) {
+            console.log("REPEAT!");
             choices();
         }
         else {
@@ -140,7 +123,6 @@ function choices() {
     }
 
     function randomNumbersFunction(countOfNumbers) {
-
         var arr = [];
         while (arr.length < countOfNumbers) {
             var randomnumber = Math.ceil(Math.random() * countriesToTest.length - 1);
@@ -160,6 +142,7 @@ function choices() {
     }
 
     function randomChoices() {
+        multipleChoiceArrayNames=[];
         function sortNumber(a,b) {
             return a - b;
             }
@@ -169,20 +152,35 @@ function choices() {
             allNumbers.push(randomNumbersArray[i]);
         }
         allNumbersSorted= allNumbers.sort(sortNumber);
-
+        console.log("all numbersSorted is " + allNumbersSorted);
          for (i=0; i< allNumbersSorted.length; i++) {
              multipleChoiceArrayNames.push(countryNames[allNumbersSorted[i]]);
          }
-
-        for (i=0; i< multipleChoiceArrayNames.length; i++) {
-            console.log(multipleChoiceArrayNames[i]);
-            document.getElementById(multipleChoiceArrayNames[i]).style.display = "block";
-        }
+        console.log(multipleChoiceArrayNames);
     }
+
+      function addButtons(arrayName) {
+           node = document.getElementById("buttonsdiv");
+                while (node.hasChildNodes()) {
+                node.removeChild(node.lastChild);
+                }
+
+          for (var i = 0; i < arrayName.length; i++) {
+            var btn = document.csreateElement("div");
+            btn.id = arrayName[i];
+            btn.className = "countrybutton";
+            btn.innerHTML = arrayName[i];
+            btn.className = "button";
+            btn.style.display = "block";
+            document.getElementById("buttonsdiv").appendChild(btn);
+            btn.addEventListener("click", decision);
+        }
+     }
 
 
     function changeFlag() {
         var flagCode = correctCountryCca3.toLowerCase();
+        console.log("flag code is" + correctCountryCca3);
         document.getElementById("Flag_Image").src = "countries-master/countries-master/data/" + flagCode + ".svg";
         document.getElementById("Flag_Image").style.display = "block";
     }
@@ -196,8 +194,7 @@ function choices() {
     correctCountryCca3 = cca3codes[correctAnswerNumber];
     correctCountryCca2 = cca2codes[correctAnswerNumber];
     changeFlag();
-    decision();
-    changehtml();
+    addButtons(multipleChoiceArrayNames);
 }
 // List of Functions Changing the colour of the country
 //Global Variables. The country codes and their original colours.
@@ -210,45 +207,27 @@ function colorcountry(stylehere) {
     countryShapeFill.setAttribute("style", stylehere);
 }
 function decision() {
-
-    var buttons = document.getElementsByClassName("button");
-    var buttonsCount = buttons.length;
-
-    for (var i = 0; i < buttons.length + 1; i += 1) {
-
-
-
-        buttons[i].onclick = function () {
-
-            document.getElementById(correctCountryName).style.display = "none";
-
-            for (i=0; i< multipleChoiceArrayNames.length; i++) {
-            document.getElementById(multipleChoiceArrayNames[i]).style.display = "none";
-        }
             answeredCountry = this.id;
-            // document.getElementById("CountrySelectBox").innerHTML = answeredCountry;
             if (correctCountryName === answeredCountry) {
+                // Animate the Element
                 var elm = document.getElementById("correct_box")
                 var newone = elm.cloneNode(true);
                 elm.parentNode.replaceChild(newone, elm);
                 document.getElementById("correct_box").classList.add('animate_box');
+
+
                 score = score + 1;
-                console.log("SCORE IS " + score);
                 document.getElementById("ScoreBox").innerHTML = score + "/" + countriesToTest.length;
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameCorrect";
                 newelementdiv.innerHTML = correctCountryName;
                 document.getElementById("FinishedCountries").appendChild(newelementdiv);
-                
                 if (correctCountryName == "Russia") {
                     kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
                 }
                 colorcountry("fill:#68C398; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
-                countryNamesAll.push(correctCountryName);
-                cca2codes.push(correctCountryCca2);
-                cca3codes.push(correctCountryCca3);
-                endofturn();
+
             } else {
                 var elm = document.getElementById("incorrect_box")
                 var newone = elm.cloneNode(true);
@@ -259,22 +238,30 @@ function decision() {
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameWrong";
                 newelementdiv.innerHTML = correctCountryName;
+
                 document.getElementById("FinishedCountries").appendChild(newelementdiv);
 
                 if (correctCountryName == "Russia") {
                     kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
                 }
                 colorcountry("fill:#F47A6F; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
+            }
+
                 countryNamesAll.push(correctCountryName);
                 cca2codes.push(correctCountryCca2);
                 cca3codes.push(correctCountryCca3);
+                changehtml();
+
+
+                node = document.getElementById("buttonsdiv");
+                while (node.hasChildNodes()) {
+                node.removeChild(node.lastChild);
+                }
+
                 endofturn();
-            }
         }
 
-    }
-    console.log("exit onclick function")
-}
+
 //changing all of the HTML elements. Essentialy now just changing the score.
 function changehtml() {
     document.getElementById("ScoreBox").innerHTML = score + "/" + countriesToTest.length;
