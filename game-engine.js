@@ -97,6 +97,7 @@ function loadCountries() {
                 cca2codes.push(data[i].cca2);
             }
         }
+
 //creating buttons of countryNames. These are now divs.
         for (var i = 0; i < countryNames.length; i++) {
             var btn = document.createElement("div");
@@ -246,6 +247,9 @@ function decision() {
             console.log(answeredCountry + "   ");
             console.log(correctCountryName + "   ");
             if (correctCountryName === answeredCountry) {
+                var elm = document.getElementById("correct_box")
+                var newone = elm.cloneNode(true);
+                elm.parentNode.replaceChild(newone, elm);
                 document.getElementById("correct_box").classList.add('animate_box');
                 score = score + 1;
                 console.log("SCORE IS " + score);
