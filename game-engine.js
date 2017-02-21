@@ -190,6 +190,7 @@ function choices() {
     function changeFlag() {
         var flagCode = correctCountryCca3.toLowerCase();
         document.getElementById("Flag_Image").src = "countries-master/countries-master/data/" + flagCode + ".svg";
+        document.getElementById("Flag_Image").style.display = "block";
     }
 
     answernumberfunc();
@@ -269,9 +270,11 @@ function decision() {
                 cca3codes.push(correctCountryCca3);
                 endofturn();
             } else {
+                var elm = document.getElementById("incorrect_box")
+                var newone = elm.cloneNode(true);
+                elm.parentNode.replaceChild(newone, elm);
+                document.getElementById("incorrect_box").classList.add('animate_box');
 
-                document.getElementById("correct_box").classList.remove('animate_box');
-                document.getElementById("correct_box").classList.add('animate_box');
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameWrong";
@@ -295,6 +298,7 @@ function decision() {
 //changing all of the HTML elements. Essentialy now just changing the score.
 function changehtml() {
     document.getElementById("ScoreBox").innerHTML = score + "/" + countriesToTest.length;
+     document.getElementById("Flag_Image").style.display = "none";
 }
 //At the end of each turn.
 function endofturn() {
