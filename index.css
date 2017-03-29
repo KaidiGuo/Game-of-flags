@@ -99,7 +99,14 @@ font-family:  'Gudea', sans-serif;
     height: auto;
     margin: auto;
     opacity: 0;
+}
+
+.right_box{
     background-color: green;
+}
+
+.wrong_box{
+    background-color: red;
 }
 
 .animate_box{
@@ -114,7 +121,7 @@ font-family:  'Gudea', sans-serif;
 
 @keyframes show_box {
     0%   {opacity: 0}
-    50%  {opacity: 0.3}
+    50%  {opacity: 1}
     100% {opacity: 0}
 }
 
@@ -158,6 +165,10 @@ font-family:  'Gudea', sans-serif;
 cursor:pointer;
 
 }
+.button:hover{
+    background-color: #ffffff;
+    color: rgb(64, 81, 132);
+}
 .restartbuttons{
 cursor:pointer;
   /*border: 1px solid red;*/
@@ -167,6 +178,7 @@ cursor:pointer;
   width: 30%;
   background-color: white;
   color: rgb(64, 81, 132);
+  z-index: 5;
 }
 
 #seemap{

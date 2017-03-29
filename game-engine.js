@@ -1,15 +1,8 @@
 var EUCountries = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "lt", "lu", "lv", "me", "rs", "mc", "md", "mk", "nl", "no", "pl", "pt", "ro", "se", "si", "sk", "ru", "sm", "tr", "ua",];
 var countriesOnMapProgrammed= [];
-loadAllCountriesOnMap();
-var threeCountries = ["ba","be","bg"]
 
+var threeCountries = ["ba","be","bg"];
 var countriesToTest = countriesOnMapProgrammed;
-
-// See differences
-Array.prototype.diff = function(a) {
-    return this.filter(function(i) {return a.indexOf(i) < 0;});
-};
-console.log(EUCountries.diff(countriesOnMapProgrammed));
 
 // Global Parameters
 var numberOfTurns = 0;
@@ -45,10 +38,12 @@ var countryNames = [];
 var countryNamesAll = [];
 
 
-
+loadAllCountriesOnMap();
 
 window.onload = function() {
     loadCountries();
+    //TODO: create a loadDivs function to create the divs of the choice.
+    loadDivs();
 };
 
    function loadAllCountriesOnMap() {
@@ -76,12 +71,10 @@ window.onload = function() {
 
 //First, this loads the countries. And the country buttons
 function loadCountries() {
-
     // Checking if Kalingrad loads.
     svgEurope = document.getElementById("europe-svg").contentDocument;
     kalingrad = svgEurope.getElementById("russiak");
-    kalingrad.setAttribute("style", "fill:#F47A6F; stroke:#FFFFFF; stroke-width:20; stroke-miterlimit:10");
-    var childNodeArray = svgEurope.childNodes;
+
     numberOfTurns=countriesToTest.length;
 
     d3.json("countries.txt", function (data) {
@@ -95,8 +88,7 @@ function loadCountries() {
                 cca2codes.push(data[i].cca2);
             }
         }
-// TODO: Change so that only the text will change. No need to add new divs each time.
-        // If it contains an array.
+
         function contains(a, obj) {
             for (var i = 0; i < a.length; i++) {
                 if (a[i] === obj) {
@@ -107,6 +99,13 @@ function loadCountries() {
         }
     })
 }
+
+function deleteChildNodes(parentNodeName) {
+              node = document.getElementById(parentNodeName);
+            while (node.hasChildNodes()) {
+                node.removeChild(node.lastChild);
+                }
+          }
 
 function choices() {
 
@@ -160,13 +159,10 @@ function choices() {
     }
 
       function addButtons(arrayName) {
-           node = document.getElementById("buttonsdiv");
-                while (node.hasChildNodes()) {
-                node.removeChild(node.lastChild);
-                }
 
+          deleteChildNodes("buttonsdiv");
           for (var i = 0; i < arrayName.length; i++) {
-            var btn = document.csreateElement("div");
+            var btn = document.createElement("div");
             btn.id = arrayName[i];
             btn.className = "countrybutton";
             btn.innerHTML = arrayName[i];
@@ -251,13 +247,7 @@ function decision() {
                 cca2codes.push(correctCountryCca2);
                 cca3codes.push(correctCountryCca3);
                 changehtml();
-
-
-                node = document.getElementById("buttonsdiv");
-                while (node.hasChildNodes()) {
-                node.removeChild(node.lastChild);
-                }
-
+                deleteChildNodes("buttonsdiv");
                 endofturn();
         }
 
@@ -328,29 +318,13 @@ function endofgame() {
         changehtml();
 }
 
-function setDisplayStyle(id,displayStyle){
-    document.getElementById(id).style.display = displayStyle;
-}
-
-//This is the start button which is clicked.
 function startbutton() {
 
-//TODO: for each of the elements in multiple choice array !== null.
-    if (document.getElementById(correctCountryName) !== null) {
-        //If there are buttons, set them to no display.
-        for (i=0; i<multipleChoiceArrayNames.length; i++){
-            //document.getElementById(multipleChoiceArrayNames[i]).style.display = "none";
-            setDisplayStyle(multipleChoiceArrayNames[i],"none");
-        }
-
-    }
     document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesToTest.length;
     document.getElementById("rulebox").style.display = "none";
     document.getElementById("absolutebox").style.display = "none";
     document.getElementById("Flag_Image").style.display = "block";
     document.getElementById("start1").innerHTML = "Restart";
-
-
     resetAnsweredBox();
     previousChoiceArray = [];
     resetallcolours();
@@ -363,6 +337,7 @@ function startbutton() {
 
 
 //Describes JavaScript code for pop-up box
+
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
@@ -384,6 +359,7 @@ function showBar() {
     document.getElementById("sstart").style.display = "none";
 }
 var Mapview = 1;
+
 function see() {
     if (Mapview == 1) {
         document.getElementById("mybar").style.display = "none";
@@ -394,5 +370,4 @@ function see() {
         Mapview = 1;
 
     }
-
 }
