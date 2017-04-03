@@ -43,8 +43,6 @@ loadAllCountriesOnMap();
 window.onload = function() {
     loadCountries();
 };
-//TODO: Change this SVG into a JSON file. 
-// TODO: Add timer function. 
 
    function loadAllCountriesOnMap() {
     var a = document.getElementById("europe-svg");
@@ -63,7 +61,6 @@ window.onload = function() {
          if (index > -1) {
         countriesOnMapProgrammed.splice(index, 1);
         }
-         console.log(countriesOnMapProgrammed);
             }, false);
     }
 
@@ -72,9 +69,7 @@ window.onload = function() {
 function loadCountries() {
     svgEurope = document.getElementById("europe-svg").contentDocument;
     kalingrad = svgEurope.getElementById("russiak");
-
     numberOfTurns=countriesToTest.length;
-
     d3.json("countries.txt", function (data) {
 
         for (var i = 0; i < data.length; i++) {
@@ -100,7 +95,6 @@ function loadCountries() {
 
 function deleteChildNodes(parentNodeName) {
               node = document.getElementById(parentNodeName);
-            console.log("Node is " + node);
             while (node.hasChildNodes()) {
                 node.removeChild(node.lastChild);
                 }
@@ -122,7 +116,6 @@ function choices() {
 
     function answernumberfunc() {
         if (previousChoiceArray.indexOf(correctAnswerNumber) >= 0) {
-            console.log("REPEAT!");
             choices();
         }
         else {
@@ -160,11 +153,9 @@ function choices() {
             allNumbers.push(randomNumbersArray[i]);
         }
         allNumbersSorted= allNumbers.sort(sortNumber);
-        console.log("all numbersSorted is " + allNumbersSorted);
          for (i=0; i< allNumbersSorted.length; i++) {
              multipleChoiceArrayNames.push(countryNames[allNumbersSorted[i]]);
          }
-        console.log(multipleChoiceArrayNames);
     }
 
       function addButtonText(arrayName) {
@@ -177,7 +168,6 @@ function choices() {
             btn.className = "button";
             btn.style.display = "block";
             var btnId = ("button#" + i).toString()
-            console.log("btnid is " + btnId)
             deleteChildNodes(btnId)
             document.getElementById(btnId).appendChild(btn);
             btn.addEventListener("click", decision);
@@ -187,7 +177,6 @@ function choices() {
 
     function changeFlag() {
         var flagCode = correctCountryCca3.toLowerCase();
-        console.log("flag code is" + correctCountryCca3);
         document.getElementById("Flag_Image").src = "countries-master/countries-master/data/" + flagCode + ".svg";
         document.getElementById("Flag_Image").style.display = "block";
     }
@@ -196,7 +185,6 @@ function choices() {
     var randomNumbersArray = [];
     randomNumbersFunction(numberOfChoices);
     randomChoices();
-    console.log(correctAnswerNumber);
     correctCountryName = countryNames[correctAnswerNumber];
     correctCountryCca3 = cca3codes[correctAnswerNumber];
     correctCountryCca2 = cca2codes[correctAnswerNumber];
@@ -252,7 +240,6 @@ function decision() {
                     answeredCountryButtonParent.classList.remove("wrong_box");
                 },500);
 
-
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameWrong";
@@ -285,20 +272,20 @@ function endofturn() {
     turnNumber = turnNumber + 1;
     if (turnNumber >= numberOfTurns) {
         endofgame()
+        return
     }
-    console.log("NUMBER OF COUNTRIES LEFT " + countryNames.length);
-    multipleChoiceArrayNames = [];
-    choices();
-}
+    if(turnNumber<numberOfTurns) {
+        multipleChoiceArrayNames = [];
+        choices();
+    }
+};
 //Reset all countries colours Including Kalingrad.
 function resetallcolours() {
 
     kalingrad.setAttribute("style", "fill:#F6DD78; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
 
     for (var i = 0; i <= countryfillglob.length; i += 1) {
-        console.log(countryfillglob[i]);
         var resetCountry = svgEurope.getElementById(countryfillglob[i]);
-        console.log("RESETTING Country");
         if (resetCountry !== null) {
             resetCountry.setAttribute("style", originalCountryStyles[i])
         }
@@ -308,21 +295,17 @@ function resetallcolours() {
 
 //Resets the Box at the bottom of the screen.
 function resetAnsweredBox() {
-    console.log("RESETANWEREBOX");
     var wrongCountries =
         document.getElementsByClassName("finishednameWrong");
 
     for (var i = 0; i < wrongCountries.length; i += 1) {
         wrongCountries[i].style.display = "none";
     }
-    console.log(wrongCountries);
 
     var correctcountries = document.getElementsByClassName("finishednameCorrect");
-    console.log("correce" + correctcountries);
     for (var i = 0; i < correctcountries.length; i += 1) {
         correctcountries[i].style.display = "none";
     }
-    console.log(wrongCountries);
 }
 function resetChoices() {
     correctCountryName = "";
@@ -340,7 +323,10 @@ function endofgame() {
         score = 0;
         deleteChildNodes("buttonsdiv")
         changehtml();
-        startbutton();
+           document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesToTest.length;
+    document.getElementById("rulebox").style.display = "block";
+    document.getElementById("absolutebox").style.display = "block";
+        document.getElementById("start1").innerHTML = "Start";
 }
 
 function startbutton() {
@@ -359,7 +345,7 @@ function startbutton() {
     multipleChoiceArrayNames=[];
     addButtons();
     choices();
-
+    st.start();
 }
 
 
@@ -425,4 +411,42 @@ document.addEventListener( 'mousemove', function(ev) {
 }, false );
 })();
 
+// For Stopwatch taken from http://stackoverflow.com/questions/1210701/compute-elapsed-time
+var st = new Stopwatch();
+st.start(); //Start the stopwatch
+st.getSeconds();
+
+function Stopwatch(){
+  var startTime, endTime, instance = this;
+
+  this.start = function (){
+    startTime = new Date();
+  };
+
+  this.stop = function (){
+    endTime = new Date();
+  }
+
+  this.clear = function (){
+    startTime = null;
+    endTime = null;
+  }
+
+  this.getSeconds = function(){
+    if (!endTime){
+    return 0;
+    }
+    return Math.round((endTime.getTime() - startTime.getTime()) / 1000);
+  }
+
+  this.getMinutes = function(){
+    return instance.getSeconds() / 60;
+  }
+  this.getHours = function(){
+    return instance.getSeconds() / 60 / 60;
+  }
+  this.getDays = function(){
+    return instance.getHours() / 24;
+  }
+}
 

@@ -6,6 +6,7 @@ Then go on:
 `http://127.0.0.1:8000/`
 
 - [X] Highlight buttons on mouseover.
+- [ ] Extend so doesn't just test on flags but also population/ land shapes etc...
 - [ ] Show a replay of the countries you have clicked on.
 - [ ] Convert the SVG into GEOSJSON.
 - [ ] Add timer function

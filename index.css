@@ -118,7 +118,6 @@ font-family:  'Gudea', sans-serif;
     background-color: red !important;
     transition: 0.5s;
 }
-
 .wrong_box:hover{
     color: white !important;
 }
@@ -131,19 +130,11 @@ font-family:  'Gudea', sans-serif;
     animation-duration: 1s;
 }
 
-
-
-.animate_box_2{
-    animation-name: show_box;
-    animation-duration: 0.5s;
-}
-
 @keyframes show_box {
     0%   {opacity: 0}
     50%  {opacity: 1}
     100% {opacity: 0}
 }
-
 
 .buttons{
   position: relative;
@@ -151,6 +142,7 @@ font-family:  'Gudea', sans-serif;
   transition: 0.5s;
   /*border: 1px solid white;*/
 }
+
 .notbutton{
   background-color: rgb(64, 81, 132);
   font-size: 120%;
@@ -165,10 +157,6 @@ font-family:  'Gudea', sans-serif;
   width: 70%;
   /*border:1px solid;*/
 }
-
-
-
-
 
 .button{
   font-size: 120%;
@@ -187,10 +175,6 @@ font-family:  'Gudea', sans-serif;
   margin-right: auto;
   width: 70%;
     margin-bottom: 5%;
-}
-
-.countrytextbutton{
-
 }
 
 .permanentbutton:hover{
@@ -233,7 +217,6 @@ cursor:pointer;
 
 }
 
-
 .map svg{
   margin: 0px;
   padding: 0px;
@@ -267,8 +250,7 @@ cursor:pointer;
   float: left;
   /*margin-left: 3%;*/
   width: 100%;
-  height: 100%;
-
+  min-height: 100%;
   /*margin-top: 1%;*/
   background-color: rgb(64, 81, 132);
 }
