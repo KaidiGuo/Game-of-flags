@@ -6,7 +6,7 @@ var countriesToTest = countriesOnMapProgrammed;
 
 // Global Parameters
 var numberOfTurns = 0;
-var numberOfChoices = 1;
+var numberOfChoices = 3;
 
 // List of Global Variables ---------------------------------------------------
 var correctAnswerNumber = 0;
@@ -204,18 +204,13 @@ function colorcountry(stylehere) {
 function decision() {
             answeredCountry = this.id;
             answeredCountryButton = document.getElementById(answeredCountry);
-            //answeredCountryButtonParent= answeredCountryButton.parentNode;
-            answeredCountryButtonParent= document.getElementById("buttonsdiv");
+            animatedDiv= document.getElementById("buttonsdiv");
 
             if (correctCountryName === answeredCountry) {
-                // Animate the Element
-                var elm = document.getElementById("correct_box")
-                var newone = elm.cloneNode(true);
-                elm.parentNode.replaceChild(newone, elm);
-                document.getElementById("correct_box").classList.add('animate_box');
-                answeredCountryButtonParent.classList.add("right_box");
+                //Animate Element
+                animatedDiv.classList.add("right_box");
                 setTimeout(function () {
-                    answeredCountryButtonParent.classList.remove("right_box");
+                    animatedDiv.classList.remove("right_box");
                 },500);
                 score = score + 1;
                 document.getElementById("ScoreBox").innerHTML = score + "/" + countriesToTest.length;
@@ -230,14 +225,10 @@ function decision() {
                 colorcountry("fill:#68C398; stroke:#FFFFFF; stroke-width:0.5; stroke-miterlimit:10");
 
             } else {
-                var elm = document.getElementById("incorrect_box")
-                var newone = elm.cloneNode(true);
-                elm.parentNode.replaceChild(newone, elm);
-                document.getElementById("incorrect_box").classList.add('animate_box');
-
-                 answeredCountryButtonParent.classList.add("wrong_box");
+               //Animate
+                 animatedDiv.classList.add("wrong_box");
                 setTimeout(function () {
-                    answeredCountryButtonParent.classList.remove("wrong_box");
+                    animatedDiv.classList.remove("wrong_box");
                 },500);
 
                 var newelementdiv = document.createElement("p");
