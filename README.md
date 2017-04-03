@@ -3,9 +3,14 @@
 To run the server on Linux go to the directory and then type 
 `python -m SimpleHTTPServer`  
 Then go on: 
-`http://127.0.0.1:8000/` 
+`http://127.0.0.1:8000/`
 
-- [ ] Highlight buttons on mouseover.
+- [X] Highlight buttons on mouseover.
+- [ ] Show a replay of the countries you have clicked on.
+- [ ] Convert the SVG into GEOSJSON.
+- [ ] Add timer function
+- [ ] When there is an error in the shaepefile, do something.
+- [ ] Allow the user to automatically put in the error.
 - [ ] Restart goes back to the home page, not restart the whole thing. 
 - [X] Change the start button bug. 
 - [ ] Share on Facebook/ mail etc

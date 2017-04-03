@@ -6,7 +6,7 @@ var countriesToTest = countriesOnMapProgrammed;
 
 // Global Parameters
 var numberOfTurns = 0;
-var numberOfChoices = 3;
+var numberOfChoices = 1;
 
 // List of Global Variables ---------------------------------------------------
 var correctAnswerNumber = 0;
@@ -42,9 +42,9 @@ loadAllCountriesOnMap();
 
 window.onload = function() {
     loadCountries();
-    //TODO: create a loadDivs function to create the divs of the choice.
-    loadDivs();
 };
+//TODO: Change this SVG into a JSON file. 
+// TODO: Add timer function. 
 
    function loadAllCountriesOnMap() {
     var a = document.getElementById("europe-svg");
@@ -58,7 +58,6 @@ window.onload = function() {
                     id = allELements[i].id;
                     countriesOnMapProgrammed.push(id);
                 };
-         //Remove russiak
          var removeThis = "russiak";
          var index = countriesOnMapProgrammed.indexOf(removeThis);
          if (index > -1) {
@@ -71,7 +70,6 @@ window.onload = function() {
 
 //First, this loads the countries. And the country buttons
 function loadCountries() {
-    // Checking if Kalingrad loads.
     svgEurope = document.getElementById("europe-svg").contentDocument;
     kalingrad = svgEurope.getElementById("russiak");
 
@@ -102,13 +100,24 @@ function loadCountries() {
 
 function deleteChildNodes(parentNodeName) {
               node = document.getElementById(parentNodeName);
+            console.log("Node is " + node);
             while (node.hasChildNodes()) {
                 node.removeChild(node.lastChild);
                 }
           }
 
-function choices() {
+function addButtons() {
+      for (var i = 0; i <= numberOfChoices; i++) {
+        var btn = document.createElement("div");
+        btn.id = "button#" + i ;
+        btn.className = "button";
+        btn.classList.add("permanentbutton");
+        btn.style.display = "block";
+        document.getElementById("buttonsdiv").appendChild(btn);
+    }
+ }
 
+function choices() {
     correctAnswerNumber = Math.ceil(Math.random() * countriesToTest.length - 1);
 
     function answernumberfunc() {
@@ -158,17 +167,19 @@ function choices() {
         console.log(multipleChoiceArrayNames);
     }
 
-      function addButtons(arrayName) {
-
-          deleteChildNodes("buttonsdiv");
+      function addButtonText(arrayName) {
           for (var i = 0; i < arrayName.length; i++) {
             var btn = document.createElement("div");
             btn.id = arrayName[i];
             btn.className = "countrybutton";
+            btn.className= "countrybutton-text"
             btn.innerHTML = arrayName[i];
             btn.className = "button";
             btn.style.display = "block";
-            document.getElementById("buttonsdiv").appendChild(btn);
+            var btnId = ("button#" + i).toString()
+            console.log("btnid is " + btnId)
+            deleteChildNodes(btnId)
+            document.getElementById(btnId).appendChild(btn);
             btn.addEventListener("click", decision);
         }
      }
@@ -190,7 +201,7 @@ function choices() {
     correctCountryCca3 = cca3codes[correctAnswerNumber];
     correctCountryCca2 = cca2codes[correctAnswerNumber];
     changeFlag();
-    addButtons(multipleChoiceArrayNames);
+    addButtonText(multipleChoiceArrayNames);
 }
 // List of Functions Changing the colour of the country
 //Global Variables. The country codes and their original colours.
@@ -204,14 +215,20 @@ function colorcountry(stylehere) {
 }
 function decision() {
             answeredCountry = this.id;
+            answeredCountryButton = document.getElementById(answeredCountry);
+            //answeredCountryButtonParent= answeredCountryButton.parentNode;
+            answeredCountryButtonParent= document.getElementById("buttonsdiv");
+
             if (correctCountryName === answeredCountry) {
                 // Animate the Element
                 var elm = document.getElementById("correct_box")
                 var newone = elm.cloneNode(true);
                 elm.parentNode.replaceChild(newone, elm);
                 document.getElementById("correct_box").classList.add('animate_box');
-
-
+                answeredCountryButtonParent.classList.add("right_box");
+                setTimeout(function () {
+                    answeredCountryButtonParent.classList.remove("right_box");
+                },500);
                 score = score + 1;
                 document.getElementById("ScoreBox").innerHTML = score + "/" + countriesToTest.length;
                 var newelementdiv = document.createElement("p");
@@ -230,6 +247,12 @@ function decision() {
                 elm.parentNode.replaceChild(newone, elm);
                 document.getElementById("incorrect_box").classList.add('animate_box');
 
+                 answeredCountryButtonParent.classList.add("wrong_box");
+                setTimeout(function () {
+                    answeredCountryButtonParent.classList.remove("wrong_box");
+                },500);
+
+
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameWrong";
@@ -247,7 +270,6 @@ function decision() {
                 cca2codes.push(correctCountryCca2);
                 cca3codes.push(correctCountryCca3);
                 changehtml();
-                deleteChildNodes("buttonsdiv");
                 endofturn();
         }
 
@@ -282,6 +304,8 @@ function resetallcolours() {
         }
     }
 }
+
+
 //Resets the Box at the bottom of the screen.
 function resetAnsweredBox() {
     console.log("RESETANWEREBOX");
@@ -314,12 +338,12 @@ function endofgame() {
         resetallcolours();
         turnNumber = 0;
         score = 0;
-//         choices();
+        deleteChildNodes("buttonsdiv")
         changehtml();
+        startbutton();
 }
 
 function startbutton() {
-
     document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesToTest.length;
     document.getElementById("rulebox").style.display = "none";
     document.getElementById("absolutebox").style.display = "none";
@@ -330,9 +354,12 @@ function startbutton() {
     resetallcolours();
     turnNumber = 0;
     score = 0;
+    deleteChildNodes("buttonsdiv")
     resetChoices();
     multipleChoiceArrayNames=[];
+    addButtons();
     choices();
+
 }
 
 
@@ -371,3 +398,31 @@ function see() {
 
     }
 }
+
+//Code from https://hacks.mozilla.org/2012/04/click-highlights-with-css-transitions/
+
+;;;/*to be safe*/(function(){
+var plot = document.createElement('div'),
+    pressed = false;
+plot.id = 'lookatmeiamhere';
+document.body.appendChild(plot);
+var offset = plot.offsetWidth / 2;
+document.addEventListener('mousedown', function(ev) {
+  document.body.classList.add('down');
+  pressed = true;
+  moveplot( ev.pageX, ev.pageY );
+}, false );
+document.addEventListener( 'mouseup', function(ev) {
+  document.body.classList.remove('down');
+  pressed = false;
+},  false );
+function moveplot( x, y ) {
+  plot.style.left = x - offset + 'px';
+  plot.style.top = y - offset + 'px';
+}
+document.addEventListener( 'mousemove', function(ev) {
+  if (pressed) { moveplot( ev.pageX, ev.pageY ); }
+}, false );
+})();
+
+
