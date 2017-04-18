@@ -2,7 +2,7 @@ var EUCountries = ["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "
 var countriesOnMapProgrammed= [];
 
 var threeCountries = ["ba","be","bg"];
-var countriesToTest = countriesOnMapProgrammed;
+var countriesToTest = EUCountries;
 
 // Global Parameters
 var numberOfTurns = 0;
@@ -11,7 +11,6 @@ var numberOfChoices = 3;
 // List of Global Variables ---------------------------------------------------
 var correctAnswerNumber = 0;
 var correctCountryName, correctCountryCca3,correctCountryCca2;
-
 
 //The Country which is chosen. Default value is answer here.
 //The multiple choice categories.
@@ -22,7 +21,6 @@ var answeredCountry = "";
 var score = 0; //Number of correct answers
 
 var turnNumber = -1; // The turn number of the round.
-
 
 var previousChoiceArray = [];
 
@@ -110,6 +108,25 @@ function addButtons() {
         document.getElementById("buttonsdiv").appendChild(btn);
     }
  }
+
+ function scoreBoxSet(value, countries) {
+    var scores = document.getElementsByClassName("ScoreBox");
+     if(value=="reset"){
+                for(i=0; i<scores.length; i++){
+                        scores[i].innerHTML = 0 + "/" + (turnNumber +1);
+                    }
+                }
+      if(value=="resetGame"){
+                for(i=0; i<scores.length; i++){
+                        scores[i].innerHTML = 0 + "/" + 0;
+                    }
+                }
+    if(value=="set"){
+        for(i=0; i<scores.length; i++){
+                        scores[i].innerHTML = score + "/" + (turnNumber +1);
+                    }
+                }
+    }
 
 function choices() {
     correctAnswerNumber = Math.ceil(Math.random() * countriesToTest.length - 1);
@@ -213,7 +230,7 @@ function decision() {
                     animatedDiv.classList.remove("right_box");
                 },500);
                 score = score + 1;
-                document.getElementById("ScoreBox").innerHTML = score + "/" + countriesToTest.length;
+                scoreBoxSet('set');
                 var newelementdiv = document.createElement("p");
                 newelementdiv.id = "Country" + turnNumber;
                 newelementdiv.className = "finishednameCorrect";
@@ -254,8 +271,8 @@ function decision() {
 
 //changing all of the HTML elements. Essentialy now just changing the score.
 function changehtml() {
-    document.getElementById("ScoreBox").innerHTML = score + "/" + countriesToTest.length;
-     document.getElementById("Flag_Image").style.display = "none";
+    scoreBoxSet('set');
+    document.getElementById("Flag_Image").style.display = "none";
 }
 //At the end of each turn.
 function endofturn() {
@@ -305,7 +322,9 @@ function resetChoices() {
 
 
 //At the end of the game...
+//TODO: Bug at the end of the game the last country's colour does not change.
 function endofgame() {
+        console.log("answered country is" +  answeredCountry);
         alert("End of game! You scored " + score + " out of " + turnNumber);
         resetAnsweredBox();
         previousChoiceArray = [];
@@ -314,14 +333,13 @@ function endofgame() {
         score = 0;
         deleteChildNodes("buttonsdiv")
         changehtml();
-           document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesToTest.length;
+    scoreBoxSet('reset');
     document.getElementById("rulebox").style.display = "block";
     document.getElementById("absolutebox").style.display = "block";
         document.getElementById("start1").innerHTML = "Start";
 }
 
 function startbutton() {
-    document.getElementById("ScoreBox").innerHTML = "0" + "/" + countriesToTest.length;
     document.getElementById("rulebox").style.display = "none";
     document.getElementById("absolutebox").style.display = "none";
     document.getElementById("Flag_Image").style.display = "block";
@@ -330,6 +348,7 @@ function startbutton() {
     previousChoiceArray = [];
     resetallcolours();
     turnNumber = 0;
+    scoreBoxSet('resetGame');
     score = 0;
     deleteChildNodes("buttonsdiv")
     resetChoices();

@@ -16,18 +16,18 @@ Then go on:
 - [X] Change the start button bug. 
 - [ ] Share on Facebook/ mail etc
 - [ ] Google analytics.
-- [ ] Countries completed title 	
+- [x] Countries completed title
 - [ ] Score in a more obvious location.
 - [ ] Quicker rendering to the server.
 - [ ] Timer function
 - [ ] Link to home.
 - [ ] Start button at home.
 - [ ] Translate to Chinese.
-- [ ] Remove Google Maps
-- [ ] Remove Images.
-- [ ] Remove Names
+- [x] Remove Google Maps
+- [x] Remove Images.
+- [x] Remove Names
 - [X] Import to Github.
-- [ ] Right/ wrong appears/ more flashy.
+- [X] Right/ wrong appears/ more flashy.
 - [X] Github 	
 //TODO: Change the number of countries which displays. - Done, see randomNumbersFunction(3);
 //TODO: Change the map which could be displayed.

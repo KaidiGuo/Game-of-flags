@@ -103,7 +103,7 @@ font-family:  'Gudea', sans-serif;
 }
 
 .right_box{
-    background-color: green !important;
+    background-color: #1ac364 !important;
     transition: 0.5s;
 }
 
@@ -115,7 +115,7 @@ font-family:  'Gudea', sans-serif;
 }
 
 .wrong_box{
-    background-color: red !important;
+    background-color: #F47A6F !important;
     transition: 0.5s;
 }
 .wrong_box:hover{
