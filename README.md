@@ -5,6 +5,11 @@ To run the server on Linux go to the directory and then type
 Then go on: 
 `http://127.0.0.1:8000/`
 
+for the icon use this: 
+https://graphicdesign.stackexchange.com/questions/77359/how-to-convert-a-square-svg-to-all-size-ico
+
+
+
 - [X] Highlight buttons on mouseover.
 - [ ] Get a proper website file structure.
 - [ ] Extend so doesn't just test on flags but also population/ land shapes etc...

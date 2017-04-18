@@ -81,6 +81,11 @@ font-family:  'Gudea', sans-serif;
 .flag{
     position: relative;
 }
+.flag-container {
+    display: flex;
+    display: -webkit-flex;
+    height:100px;
+}
 #Flag_Image{
   display: none;
   margin-top: 4%;
@@ -107,22 +112,9 @@ font-family:  'Gudea', sans-serif;
     transition: 0.5s;
 }
 
-.right_box:hover{
-    color: white !important;
-}
-.right_box:hover > .button{
-    color: white !important;
-}
-
 .wrong_box{
     background-color: #F47A6F !important;
     transition: 0.5s;
-}
-.wrong_box:hover{
-    color: white !important;
-}
-.wrong_box:hover > .button{
-    color: white !important;
 }
 
 .animate_box{
@@ -177,14 +169,7 @@ font-family:  'Gudea', sans-serif;
     margin-bottom: 5%;
 }
 
-.permanentbutton:hover{
-    background-color: #ffffff;
-    color: rgb(64, 81, 132);
-}
-.permanentbutton:hover > .button{
-    color: rgb(64, 81, 132);
 
-}
 .restartbuttons{
 cursor:pointer;
   /*border: 1px solid red;*/
@@ -439,7 +424,34 @@ li {
   color: rgb(255, 255, 255);
 }
 
+@media (min-width: 1151px) {
+    .right_box:hover{
+    color: white !important;
+}
+.right_box:hover > .button{
+    color: white !important;
+}
 
+.wrong_box:hover{
+    color: white !important;
+}
+.wrong_box:hover > .button{
+    color: white !important;
+}
+
+.permanentbutton:hover{
+    background-color: #ffffff;
+    color: rgb(64, 81, 132);
+}
+.permanentbutton:hover > .button{
+    color: rgb(64, 81, 132);
+
+}
+
+
+
+
+}
 
 @media (max-width: 1150px) {
   .notbutton{
@@ -463,8 +475,12 @@ li {
   /*border: 1px solid red;*/
 }
 
+#Flag_Image{
+      height:300px;
+  }
+
 .bar p{
-  font-size: 80%;
+  font-size: 250%;
 
 }
   .map svg{
@@ -480,9 +496,168 @@ li {
 
 
 }
-@media (-webkit-min-device-pixel-ratio:2),(min-resolution: 190dpi) {
+/*@media (-webkit-min-device-pixel-ratio:2),(min-resolution: 190dpi) {*/
+  /*body{*/
+    /*text-align: center;*/
+    /*font-size: 200%;*/
+  /*}*/
+  /*.above{*/
+    /*float: left;*/
+    /*padding-top: 1%;;*/
+    /*padding-right: 2%;*/
+    /*height: auto;*/
+  /*}*/
+    /*.bar{*/
+      /*padding-top: 3%;*/
+      /*display: none;*/
+      /*position: absolute;*/
+      /*z-index: 600;*/
+      /*top: 0px;*/
+      /*background-color:  rgb(145, 164, 195);*/
+      /*width: 100%;*/
+      /*padding: 0px;*/
+      /*margin: 0px;*/
+    /*}*/
+    /*#seemap{*/
+      /*display: block;*/
+    /*}*/
+    /*#Continue{*/
+      /*display: none;*/
+    /*}*/
+    /*#map {*/
+    /*display: none;*/
+    /*}*/
+    /*.logo{*/
+      /*margin-top: 5%;*/
+    /*}*/
+    /*!*.rules{*/
+      /*height: 20%;*/
+      /*width: 50%;*/
+      /*margin-left: auto;*/
+      /*margin-right: auto;*/
+      /*background-color: green;*/
+      /*text-align: left;*/
+    /*}*!*/
+    /*#absolutebox{*/
+      /*!*display: none;*!*/
+     /**/
+      /*padding-top: 15%;*/
+      /*z-index: 300;*/
+      /*height:40%;*/
+      /*width: 80%;*/
+      /*background-color: rgb(145, 164, 195);*/
+      /*!*background-color: rgb(123, 190, 145);*!*/
+
+
+    /*}*/
+    /*.above{*/
+      /*!*border: 1px solid black;*!*/
+
+      /*padding: 0px;*/
+    /*}*/
+    /*.under{*/
+      /*display: none;*/
+    /*}*/
+    /*.map{*/
+      /*width: 100%;*/
+      /*padding: 0px;*/
+    /*}*/
+    /*.map svg{*/
+      /*width: 90%;*/
+      /*float: none;*/
+      /*!*border: 1px solid red;*!*/
+    /*}*/
+    /*.slogo{*/
+      /*text-align: center;*/
+      /*display: block;*/
+      /*width: 100%;*/
+      /*padding-top: 5%;*/
+      /*padding-bottom: 5%;*/
+
+    /*}*/
+    /*.slogo img{*/
+      /*margin: 2%;*/
+      /*width: 70%;*/
+    /*}*/
+
+    /*.sunder{*/
+      /*display: block;*/
+      /*float: left;*/
+      /*width: 100%;*/
+      /*!*height: 100px;*!*/
+      /*height: auto;*/
+      /*!*border: 1px solid yellow;*!*/
+
+    /*}*/
+    /*.sbutton {*/
+      /*background-color: rgb(64, 81, 132);*/
+      /*font-size: 200%;*/
+      /*margin-left: auto;*/
+      /*margin-right: auto;*/
+      /*margin-top: 5%;*/
+      /*padding: 5px;*/
+      /*color: rgb(255, 255, 255);*/
+      /*text-decoration: none;*/
+      /*text-align:center;*/
+      /*width: 150px;*/
+    /*}*/
+
+    /*.infoline {*/
+      /*float: left;*/
+      /*margin-top: 14%;*/
+      /*padding-top: 14%;*/
+
+      /*!*border: 1px solid red;*!*/
+    /*}*/
+    /*.infoline p{*/
+      /*font-size: 80%;*/
+
+    /*}*/
+    /*#author_information {*/
+        /*font-size:50%;*/
+      /*!*border: 1px solid red;*!*/
+        /*position: absolute;*/
+        /*float: none;*/
+        /*width: 80%;*/
+        /*height: auto;*/
+        /*margin-left: auto;*/
+        /*margin-right: auto;*/
+        /*margin-top: 5%;*/
+        /*margin-bottom: 5%;*/
+
+        /*}*/
+    /*.author {*/
+        /*width: 80px;*/
+        /*margin: 5px;*/
+        /*align-items: center;*/
+        /*}*/
+        /*.button{*/
+          /*background-color: rgb(64, 81, 132);*/
+          /*font-size: 150%;*/
+          /*margin-left: auto;*/
+          /*margin-right: auto;*/
+          /*margin-bottom: 5%;*/
+          /*padding: 10px;*/
+          /*left: 0px;*/
+          /*color: rgb(255, 255, 255);*/
+          /*text-decoration: none;*/
+          /*text-align:center;*/
+          /*width: 70%;*/
+
+        /*}*/
+
+
+
+/*}*/
+
+@media (max-width: 800px), (-webkit-min-device-pixel-ratio:2),(min-resolution: 190dpi) {
   body{
     text-align: center;
+  }
+  .notbutton{
+    font-size: 400%;
+  }
+  .button{
     font-size: 200%;
   }
   .above{
@@ -491,158 +666,8 @@ li {
     padding-right: 2%;
     height: auto;
   }
-    .bar{
-      padding-top: 3%;
-      display: none;
-      position: absolute;
-      z-index: 600;
-      top: 0px;
-      background-color:  rgb(145, 164, 195);
-      width: 100%;
-      padding: 0px;
-      margin: 0px;
-    }
-    #seemap{
-      display: block;
-    }
-    #Continue{
-      display: none;
-    }
-    #map {
-    display: none;
-    }
-    .logo{
-      margin-top: 5%;
-    }
-    /*.rules{
-      height: 20%;
-      width: 50%;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: green;
-      text-align: left;
-    }*/
-    #absolutebox{
-      /*display: none;*/
-     
-      padding-top: 15%;
-      z-index: 300;
-      height:40%;
-      width: 80%;
-      background-color: rgb(145, 164, 195);
-      /*background-color: rgb(123, 190, 145);*/
-
-
-    }
-    .above{
-      /*border: 1px solid black;*/
-
-      padding: 0px;
-    }
-    .under{
-      display: none;
-    }
-    .map{
-      width: 100%;
-      padding: 0px;
-    }
-    .map svg{
-      width: 90%;
-      float: none;
-      /*border: 1px solid red;*/
-    }
-    .slogo{
-      text-align: center;
-      display: block;
-      width: 100%;
-      padding-top: 5%;
-      padding-bottom: 5%;
-
-    }
-    .slogo img{
-      margin: 2%;
-      width: 70%;
-    }
-
-    .sunder{
-      display: block;
-      float: left;
-      width: 100%;
-      /*height: 100px;*/
-      height: auto;
-      /*border: 1px solid yellow;*/
-
-    }
-    .sbutton {
-      background-color: rgb(64, 81, 132);
-      font-size: 200%;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 5%;
-      padding: 5px;
-      color: rgb(255, 255, 255);
-      text-decoration: none;
-      text-align:center;
-      width: 150px;
-    }
-
-    .infoline {
-      float: left;
-      margin-top: 14%;
-      padding-top: 14%;
-
-      /*border: 1px solid red;*/
-    }
-    .infoline p{
-      font-size: 80%;
-
-    }
-    #author_information {
-        font-size:50%;
-      /*border: 1px solid red;*/
-        position: absolute;
-        float: none;
-        width: 80%;
-        height: auto;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 5%;
-        margin-bottom: 5%;
-
-        }
-    .author {
-        width: 80px;
-        margin: 5px;
-        align-items: center;
-        }
-        .button{
-          background-color: rgb(64, 81, 132);
-          font-size: 150%;
-          margin-left: auto;
-          margin-right: auto;
-          margin-bottom: 5%;
-          padding: 10px;
-          left: 0px;
-          color: rgb(255, 255, 255);
-          text-decoration: none;
-          text-align:center;
-          width: 70%;
-
-        }
-
-
-
-
-}
-@media (max-width: 800px)  {
-  body{
-    text-align: center;
-  }
-  .above{
-    float: left;
-    padding-top: 1%;;
-    padding-right: 2%;
-    height: auto;
+  #Flag_Image{
+      height:300px;
   }
     .bar{
       padding-top: 3%;
@@ -730,7 +755,7 @@ li {
     }
     .sbutton {
       background-color: rgb(255, 255, 255);
-      font-size: 120%;
+      font-size: 400%;
       margin-left: auto;
       margin-right: auto;
       margin-top: 5%;
@@ -738,7 +763,6 @@ li {
       color: rgb(64, 81, 132);
       text-decoration: none;
       text-align:center;
-      width: 150px;
     }
 
     .infoline {
