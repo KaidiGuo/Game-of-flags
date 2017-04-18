@@ -68,7 +68,7 @@ function loadCountries() {
     svgEurope = document.getElementById("europe-svg").contentDocument;
     kalingrad = svgEurope.getElementById("russiak");
     numberOfTurns=countriesToTest.length;
-    d3.json("countries.txt", function (data) {
+    d3.json("countries-master/countries-master/countries.json", function (data) {
 
         for (var i = 0; i < data.length; i++) {
 
