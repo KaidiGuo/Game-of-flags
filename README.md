@@ -12,6 +12,7 @@ https://graphicdesign.stackexchange.com/questions/77359/how-to-convert-a-square-
 
 - [X] Highlight buttons on mouseover.
 - [ ] Get a proper website file structure.
+- [ ] Change the css on the breaks (i.e make it responsive! 
 - [ ] Extend so doesn't just test on flags but also population/ land shapes etc...
 - [ ] Show a replay of the countries you have clicked on.
 - [ ] Convert the SVG into GEOSJSON.

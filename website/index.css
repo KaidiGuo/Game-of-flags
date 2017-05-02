@@ -36,6 +36,22 @@ font-family:  'Gudea', sans-serif;
 
   /*border: 1px solid red;*/
 }
+
+.bar-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.bar-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float: right;
+    position: relative;
+    text-align: center;
+    width: 50%;
+}
 .logo img{
   /*border: 1px solid black;*/
   width: 90%;
@@ -165,7 +181,7 @@ font-family:  'Gudea', sans-serif;
     background-color: rgb(64, 81, 132);
     margin-left: auto;
   margin-right: auto;
-  width: 70%;
+  width: 90%;
     margin-bottom: 5%;
 }
 
@@ -195,7 +211,7 @@ cursor:pointer;
   /*display: inline-block;*/
   position: relative;
   text-align: center;
-  width: 43%;
+  width: 100%;
   /*height: 100%;*/
   /*display: none;*/
   /*border: 1px solid green;*/
@@ -424,7 +440,7 @@ li {
   color: rgb(255, 255, 255);
 }
 
-@media (min-width: 1151px) {
+@media (min-width: 422px) {
     .right_box:hover{
     color: white !important;
 }
@@ -447,13 +463,9 @@ li {
     color: rgb(64, 81, 132);
 
 }
-
-
-
-
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 421px) {
   .notbutton{
     font-size: 100%;
   }
@@ -650,7 +662,7 @@ li {
 
 /*}*/
 
-@media (max-width: 800px), (-webkit-min-device-pixel-ratio:2),(min-resolution: 190dpi) {
+@media (max-width: 421px), (-webkit-min-device-pixel-ratio:2),(min-resolution: 190dpi) {
   body{
     text-align: center;
   }
@@ -680,6 +692,9 @@ li {
       padding: 0px;
       margin: 0px;
     }
+    .bar-right{
+        width: 100%;
+    }
     #seemap{
       display: block;
     }
@@ -705,6 +720,7 @@ li {
     #absolutebox{
       /*border: 1px solid red;*/
       /*display: none;*/
+      font-size: 3em;
       text-align: center;
       /*position: absolute;*/
       padding-top: 15%;
@@ -713,6 +729,12 @@ li {
       width: 80%;
       background-color: rgb(145, 164, 195);
 
+    }
+    .scoreBox{
+        font-size: 3em;
+    }
+    .mobileNumberBox{
+        font-size: 3em;
     }
     .above{
       /*border: 1px solid black;*/
