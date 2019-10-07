@@ -1,5 +1,5 @@
 # Game-of-flags
-check [here](http://www.gameofflags.com/) to try by yourself! 
+A game about flags. Yea~
 
 ###Starting page
 <img src="https://github.com/Sublunarwind/Game-of-flags/raw/master/screen1.png" width="40%" height="50%">
